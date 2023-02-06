@@ -1,0 +1,9 @@
+model relatorioFavorito {
+  relatorioFavoritoCodigo                Int      @id @default(autoincrement()) @db.UnsignedInt
+  relatorioFavoritoRelatorioCodigo       Int      @db.UnsignedInt
+  relatorioFavoritoUsuarioCodigo         Int
+  relatorioFavoritoInsercaoUsuarioCodigo Int
+  relatorioFavoritoInsercaoDataHora      DateTime @db.DateTime(0)
+
+  @@index([relatorioFavoritoRelatorioCodigo], map: "relatorioCodigo")
+}

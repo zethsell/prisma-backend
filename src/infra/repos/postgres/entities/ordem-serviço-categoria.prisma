@@ -1,0 +1,19 @@
+model ordemServicoCategoria {
+  ordemServicoCategoriaCodigo                                                        Int                                                              @id @default(autoincrement()) @db.UnsignedInt
+  ordemServicoCategoriaNome                                                          String                                                           @db.VarChar(60)
+  ordemServicoCategoriaDescricao                                                     String                                                           @db.Text
+  ordemServicoCategoriaInsercaoDataHora                                              DateTime                                                         @db.DateTime(0)
+  ordemServicoCategoriaInsercaoUsuarioCodigo                                         Int                                                              @db.UnsignedInt
+  ordemServicoCategoriaAlteracaoDataHora                                             DateTime                                                         @db.DateTime(0)
+  ordemServicoCategoriaAlteracaoUsuarioCodigo                                        Int                                                              @db.UnsignedInt
+  ordemServicoCategoriaContaCodigo                                                   Int
+  ordemServicoCategoriaMostraSiteFlag                                                ordemServicoCategoria_ordemServicoCategoriaMostraSiteFlag        @default(S)
+  ordemServicoCategoriaEnviaEmailClienteFlag                                         ordemServicoCategoria_ordemServicoCategoriaEnviaEmailClienteFlag @default(S)
+  usuario_ordemServicoCategoria_ordemServicoCategoriaInsercaoUsuarioCodigoTousuario  usuario                                                          @relation("ordemServicoCategoria_ordemServicoCategoriaInsercaoUsuarioCodigoTousuario", fields: [ordemServicoCategoriaInsercaoUsuarioCodigo], references: [usuarioCodigo], onDelete: NoAction, map: "ordemServicoCategoria_ibfk_1")
+  usuario_ordemServicoCategoria_ordemServicoCategoriaAlteracaoUsuarioCodigoTousuario usuario                                                          @relation("ordemServicoCategoria_ordemServicoCategoriaAlteracaoUsuarioCodigoTousuario", fields: [ordemServicoCategoriaAlteracaoUsuarioCodigo], references: [usuarioCodigo], onDelete: NoAction, map: "ordemServicoCategoria_ibfk_2")
+
+  @@index([ordemServicoCategoriaContaCodigo], map: "ordemServicoCategoriaContaCodigo")
+  @@index([ordemServicoCategoriaNome], map: "ordemServicoCategoriaNome")
+  @@index([ordemServicoCategoriaAlteracaoUsuarioCodigo], map: "usuarioAlteracao")
+  @@index([ordemServicoCategoriaInsercaoUsuarioCodigo], map: "usuarioInsercao")
+}

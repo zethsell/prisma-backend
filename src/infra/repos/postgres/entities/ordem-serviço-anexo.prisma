@@ -1,0 +1,14 @@
+
+model ordemServicoAnexo {
+  ordemServicoAnexoCodigo                Int          @id @default(autoincrement()) @db.UnsignedInt
+  ordemServicoAnexoOrdemServicoCodigo    Int          @db.UnsignedInt
+  ordemServicoAnexoNome                  String?      @db.VarChar(60)
+  ordemServicoAnexoExtensao              String?      @db.VarChar(4)
+  ordemServicoAnexoInsercaoDataHora      DateTime?    @db.DateTime(0)
+  ordemServicoAnexoInsercaoUsuarioCodigo Int?         @db.UnsignedInt
+  ordemServico                           ordemServico @relation(fields: [ordemServicoAnexoOrdemServicoCodigo], references: [ordemServicoCodigo], map: "ordemServicoAnexo_ibfk_1")
+  usuario                                usuario?     @relation(fields: [ordemServicoAnexoInsercaoUsuarioCodigo], references: [usuarioCodigo], onDelete: NoAction, map: "ordemServicoAnexo_ibfk_2")
+
+  @@index([ordemServicoAnexoOrdemServicoCodigo], map: "ordemServico")
+  @@index([ordemServicoAnexoInsercaoUsuarioCodigo], map: "usuarioInsercao")
+}

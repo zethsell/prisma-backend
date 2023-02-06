@@ -1,0 +1,10 @@
+model financeiroConta {
+  financeiroContaCodigo                 Int                @id @default(autoincrement())
+  financeiroContaNome                   String?            @db.VarChar(20)
+  financeiroContaDescricao              String?            @db.VarChar(200)
+  financeiroContaInsercaoDataHora       DateTime?          @db.DateTime(0)
+  financeiroContaInsercaoUsuarioCodigo  Int?               @db.UnsignedInt
+  financeiroContaAlteracaoUsuarioCodigo Int?               @db.UnsignedInt
+  financeiroContaAlteracaoDataHora      DateTime?          @db.DateTime(0)
+  financeiroTitulo                      financeiroTitulo[]
+}

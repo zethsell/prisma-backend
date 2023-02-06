@@ -1,0 +1,24 @@
+model movimentoExterno {
+  movimentoExternoCodigo                                                   Int        @id @default(autoincrement()) @db.UnsignedInt
+  movimentoExternoValorExtraCodigo                                         Int        @db.UnsignedInt
+  movimentoExternoEmpresaCodigo                                            Int        @db.UnsignedInt
+  movimentoExternoDescricao                                                String     @db.Text
+  movimentoExternoQuantidade                                               Decimal    @db.Decimal(6, 2)
+  movimentoExternoData                                                     DateTime   @db.Date
+  movimentoExternoInsercaoDataHora                                         DateTime   @db.DateTime(0)
+  movimentoExternoInsercaoUsuarioCodigo                                    Int        @db.UnsignedInt
+  movimentoExternoAlteracaoDataHora                                        DateTime   @db.DateTime(0)
+  movimentoExternoAlteracaoUsuarioCodigo                                   Int        @db.UnsignedInt
+  movimentoExternoCentroCustoCodigo                                        Int        @db.UnsignedInt
+  movimentoExternoContaCodigo                                              Int
+  valorExtra                                                               valorExtra @relation(fields: [movimentoExternoValorExtraCodigo], references: [valorExtraCodigo], map: "movimentoExterno_ibfk_2")
+  empresa                                                                  empresa    @relation(fields: [movimentoExternoEmpresaCodigo], references: [empresaCodigo], map: "movimentoExterno_ibfk_3")
+  usuario_movimentoExterno_movimentoExternoInsercaoUsuarioCodigoTousuario  usuario    @relation("movimentoExterno_movimentoExternoInsercaoUsuarioCodigoTousuario", fields: [movimentoExternoInsercaoUsuarioCodigo], references: [usuarioCodigo], onDelete: NoAction, map: "movimentoExterno_ibfk_4")
+  usuario_movimentoExterno_movimentoExternoAlteracaoUsuarioCodigoTousuario usuario    @relation("movimentoExterno_movimentoExternoAlteracaoUsuarioCodigoTousuario", fields: [movimentoExternoAlteracaoUsuarioCodigo], references: [usuarioCodigo], onDelete: NoAction, map: "movimentoExterno_ibfk_5")
+
+  @@index([movimentoExternoEmpresaCodigo], map: "empresa")
+  @@index([movimentoExternoContaCodigo], map: "movimentoExternoContaCodigo")
+  @@index([movimentoExternoAlteracaoUsuarioCodigo], map: "usuarioAlteracao")
+  @@index([movimentoExternoInsercaoUsuarioCodigo], map: "usuarioInsercao")
+  @@index([movimentoExternoValorExtraCodigo], map: "valorExtra")
+}

@@ -1,0 +1,12 @@
+model log {
+  logCodigo         Int      @id @default(autoincrement()) @db.UnsignedInt
+  logUsuarioCodigo  Int      @db.UnsignedInt
+  logSql            String   @db.LongText
+  logDataHora       DateTime @db.DateTime(0)
+  logTabela         String   @db.VarChar(50)
+  logRegistroCodigo Int?     @db.UnsignedInt
+  logContaCodigo    Int      @db.UnsignedInt
+  usuario           usuario  @relation(fields: [logUsuarioCodigo], references: [usuarioCodigo], onDelete: Cascade, map: "log_ibfk_1")
+
+  @@index([logUsuarioCodigo], map: "usuario")
+}

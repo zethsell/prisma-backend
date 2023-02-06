@@ -1,0 +1,10 @@
+model cargoDepartamento {
+  cargoDepartamentoCargoCodigo        Int          @db.UnsignedInt
+  cargoDepartamentoDepartamentoCodigo Int          @db.UnsignedInt
+  cargo                               cargo        @relation(fields: [cargoDepartamentoCargoCodigo], references: [cargoCodigo], onDelete: Cascade, map: "cargoDepartamento_ibfk_1")
+  departamento                        departamento @relation(fields: [cargoDepartamentoDepartamentoCodigo], references: [departamentoCodigo], onDelete: Cascade, map: "cargoDepartamento_ibfk_2")
+
+  @@id([cargoDepartamentoCargoCodigo, cargoDepartamentoDepartamentoCodigo])
+  @@index([cargoDepartamentoCargoCodigo], map: "cargo")
+  @@index([cargoDepartamentoDepartamentoCodigo], map: "departamento")
+}

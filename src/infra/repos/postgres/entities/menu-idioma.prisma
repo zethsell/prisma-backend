@@ -1,0 +1,7 @@
+model menuIdioma {
+  menuIdiomaCodigo       Int     @id @default(autoincrement())
+  menuIdiomaIdiomaCodigo Int
+  menuIdiomaMenuCodigo   Int
+  menuIdiomaNome         String  @db.VarChar(30)
+  menuIdiomaDescricao    String? @db.VarChar(250)
+}

@@ -1,0 +1,8 @@
+model perfilCargo {
+  perfilCargoPerfilCodigo Int @db.UnsignedInt
+  perfilCargoCargoCodigo  Int @db.UnsignedInt
+
+  @@id([perfilCargoPerfilCodigo, perfilCargoCargoCodigo])
+  @@index([perfilCargoCargoCodigo], map: "cargo")
+  @@index([perfilCargoPerfilCodigo], map: "perfil")
+}

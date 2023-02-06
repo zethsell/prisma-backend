@@ -1,0 +1,13 @@
+model tipoOrdemServicoHistorico {
+  tipoOrdemServicoHistoricoCodigo                   Int                     @id @default(autoincrement()) @db.UnsignedInt
+  tipoOrdemServicoHistoricoOrdemServicoEstadoCodigo Int?                    @db.UnsignedInt
+  tipoOrdemServicoHistoricoNome                     String?                 @db.VarChar(50)
+  tipoOrdemServicoHistoricoDescricao                String?                 @db.Text
+  tipoOrdemServicoHistoricoInsercaoDataHora         DateTime?               @db.DateTime(0)
+  tipoOrdemServicoHistoricoInsercaoUsuarioCodigo    Int?                    @db.UnsignedInt
+  tipoOrdemServicoHistoricoAlteracaoDataHora        DateTime?               @db.DateTime(0)
+  tipoOrdemServicoHistoricoAlteracaoUsuarioCodigo   Int?                    @db.UnsignedInt
+  ordemServicoHistorico                             ordemServicoHistorico[]
+
+  @@index([tipoOrdemServicoHistoricoOrdemServicoEstadoCodigo], map: "ordemServicoEstado")
+}

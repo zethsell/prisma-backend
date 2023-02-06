@@ -1,0 +1,9 @@
+model menuPerfil {
+  menuPerfilMenuCodigo   Int                 @db.UnsignedInt
+  menuPerfilPerfilCodigo Int                 @db.UnsignedInt
+  menuPerfilDireito      menuPerfilDireito[]
+
+  @@id([menuPerfilMenuCodigo, menuPerfilPerfilCodigo])
+  @@index([menuPerfilMenuCodigo], map: "menu")
+  @@index([menuPerfilPerfilCodigo], map: "perfil")
+}

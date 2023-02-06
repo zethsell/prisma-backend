@@ -1,0 +1,106 @@
+model usuario {
+  usuarioCodigo                                                                                    Int                                @id @default(autoincrement()) @db.UnsignedInt
+  usuarioMunicipioCodigo                                                                           String?                            @db.Char(6)
+  usuarioFilialCodigo                                                                              Int?
+  usuarioDepartamentoCodigo                                                                        Int?                               @db.UnsignedInt
+  usuarioCargoCodigo                                                                               Int?                               @db.UnsignedInt
+  usuarioLogin                                                                                     String                             @db.VarChar(50)
+  usuarioNome                                                                                      String                             @db.VarChar(80)
+  usuarioDataNascimento                                                                            DateTime?                          @db.Date
+  usuarioEndereco                                                                                  String?                            @db.VarChar(120)
+  usuarioEnderecoNumero                                                                            Int?                               @db.UnsignedInt
+  usuarioBairro                                                                                    String?                            @db.VarChar(40)
+  usuarioCep                                                                                       String?                            @db.VarChar(8)
+  usuarioTelefoneResidencial                                                                       String?                            @db.VarChar(15)
+  usuarioTelefoneComercial                                                                         String?                            @db.VarChar(15)
+  usuarioTelefoneCelular                                                                           String?                            @db.VarChar(15)
+  usuarioSenha                                                                                     String                             @db.VarChar(32)
+  usuarioAtivoFlag                                                                                 usuario_usuarioAtivoFlag           @default(S)
+  usuarioEmail                                                                                     String                             @db.VarChar(120)
+  usuarioRepresentanteErpNumero                                                                    String?                            @db.VarChar(5)
+  usuarioClienteProprioFlag                                                                        usuario_usuarioClienteProprioFlag?
+  usuarioCrmPaisCodigo                                                                             Int?                               @db.UnsignedInt
+  usuarioInsercaoDataHora                                                                          DateTime?                          @db.DateTime(0)
+  usuarioInsercaoUsuarioCodigo                                                                     Int?                               @db.UnsignedInt
+  usuarioAlteracaoDataHora                                                                         DateTime?                          @db.DateTime(0)
+  usuarioAlteracaoUsuarioCodigo                                                                    Int?                               @db.UnsignedInt
+  usuarioContaCodigo                                                                               Int                                @db.UnsignedInt
+  usuarioCentralAvisoDataHora                                                                      DateTime?                          @db.DateTime(0)
+  usuarioIdiomaCodigo                                                                              Int
+  ajuda_ajuda_ajudaInsercaoUsuarioCodigoTousuario                                                  ajuda[]                            @relation("ajuda_ajudaInsercaoUsuarioCodigoTousuario")
+  ajuda_ajuda_ajudaAlteracaoUsuarioCodigoTousuario                                                 ajuda[]                            @relation("ajuda_ajudaAlteracaoUsuarioCodigoTousuario")
+  arquivo_arquivo_arquivoInsercaoUsuarioCodigoTousuario                                            arquivo[]                          @relation("arquivo_arquivoInsercaoUsuarioCodigoTousuario")
+  arquivo_arquivo_arquivoAlteracaoUsuarioCodigoTousuario                                           arquivo[]                          @relation("arquivo_arquivoAlteracaoUsuarioCodigoTousuario")
+  atalho                                                                                           atalho[]
+  cargo_cargo_cargoInsercaoUsuarioCodigoTousuario                                                  cargo[]                            @relation("cargo_cargoInsercaoUsuarioCodigoTousuario")
+  cargo_cargo_cargoAlteracaoUsuarioCodigoTousuario                                                 cargo[]                            @relation("cargo_cargoAlteracaoUsuarioCodigoTousuario")
+  configuracao_configuracao_configuracaoUsuarioCodigoTousuario                                     configuracao[]                     @relation("configuracao_configuracaoUsuarioCodigoTousuario")
+  configuracao_configuracao_configuracaoAlteracaoUsuarioCodigoTousuario                            configuracao[]                     @relation("configuracao_configuracaoAlteracaoUsuarioCodigoTousuario")
+  configuracao_configuracao_configuracaoInsercaoUsuarioCodigoTousuario                             configuracao[]                     @relation("configuracao_configuracaoInsercaoUsuarioCodigoTousuario")
+  configuracaoModulo_configuracaoModulo_configuracaoModuloInsercaoUsuarioCodigoTousuario           configuracaoModulo[]               @relation("configuracaoModulo_configuracaoModuloInsercaoUsuarioCodigoTousuario")
+  configuracaoModulo_configuracaoModulo_configuracaoModuloAlteracaoUsuarioCodigoTousuario          configuracaoModulo[]               @relation("configuracaoModulo_configuracaoModuloAlteracaoUsuarioCodigoTousuario")
+  departamento_departamento_departamentoInsercaoUsuarioCodigoTousuario                             departamento[]                     @relation("departamento_departamentoInsercaoUsuarioCodigoTousuario")
+  departamento_departamento_departamentoAlteracaoUsuarioCodigoTousuario                            departamento[]                     @relation("departamento_departamentoAlteracaoUsuarioCodigoTousuario")
+  direito_direito_direitoInsercaoUsuarioCodigoTousuario                                            direito[]                          @relation("direito_direitoInsercaoUsuarioCodigoTousuario")
+  direito_direito_direitoAlteracaoUsuarioCodigoTousuario                                           direito[]                          @relation("direito_direitoAlteracaoUsuarioCodigoTousuario")
+  empresa_empresa_empresaGerenteUsuarioCodigoTousuario                                             empresa[]                          @relation("empresa_empresaGerenteUsuarioCodigoTousuario")
+  empresa_empresa_empresaInsercaoUsuarioCodigoTousuario                                            empresa[]                          @relation("empresa_empresaInsercaoUsuarioCodigoTousuario")
+  empresa_empresa_empresaAlteracaoUsuarioCodigoTousuario                                           empresa[]                          @relation("empresa_empresaAlteracaoUsuarioCodigoTousuario")
+  feriado_feriado_feriadoInsercaoUsuarioCodigoTousuario                                            feriado[]                          @relation("feriado_feriadoInsercaoUsuarioCodigoTousuario")
+  feriado_feriado_feriadoAlteracaoUsuarioCodigoTousuario                                           feriado[]                          @relation("feriado_feriadoAlteracaoUsuarioCodigoTousuario")
+  filial_filial_filialInsercaoUsuarioCodigoTousuario                                               filial[]                           @relation("filial_filialInsercaoUsuarioCodigoTousuario")
+  filial_filial_filialAlteracaoUsuarioCodigoTousuario                                              filial[]                           @relation("filial_filialAlteracaoUsuarioCodigoTousuario")
+  icone_icone_iconeInsercaoUsuarioCodigoTousuario                                                  icone[]                            @relation("icone_iconeInsercaoUsuarioCodigoTousuario")
+  icone_icone_iconeAlteracaoUsuarioCodigoTousuario                                                 icone[]                            @relation("icone_iconeAlteracaoUsuarioCodigoTousuario")
+  interacao_interacao_interacaoInsercaoUsuarioCodigoTousuario                                      interacao[]                        @relation("interacao_interacaoInsercaoUsuarioCodigoTousuario")
+  interacao_interacao_interacaoAlteracaoUsuarioCodigoTousuario                                     interacao[]                        @relation("interacao_interacaoAlteracaoUsuarioCodigoTousuario")
+  interacaoAnexo                                                                                   interacaoAnexo[]
+  log                                                                                              log[]
+  menu_menu_menuInsercaoUsuarioCodigoTousuario                                                     menu[]                             @relation("menu_menuInsercaoUsuarioCodigoTousuario")
+  menu_menu_menuAlteracaoUsuarioCodigoTousuario                                                    menu[]                             @relation("menu_menuAlteracaoUsuarioCodigoTousuario")
+  menuUsuario                                                                                      menuUsuario[]
+  movimentoExterno_movimentoExterno_movimentoExternoInsercaoUsuarioCodigoTousuario                 movimentoExterno[]                 @relation("movimentoExterno_movimentoExternoInsercaoUsuarioCodigoTousuario")
+  movimentoExterno_movimentoExterno_movimentoExternoAlteracaoUsuarioCodigoTousuario                movimentoExterno[]                 @relation("movimentoExterno_movimentoExternoAlteracaoUsuarioCodigoTousuario")
+  municipio2_municipio2_municipioInsercaoUsuarioCodigoTousuario                                    municipio2[]                       @relation("municipio2_municipioInsercaoUsuarioCodigoTousuario")
+  municipio2_municipio2_municipioAlteracaoUsuarioCodigoTousuario                                   municipio2[]                       @relation("municipio2_municipioAlteracaoUsuarioCodigoTousuario")
+  ordemServico                                                                                     ordemServico[]
+  ordemServicoAnexo                                                                                ordemServicoAnexo[]
+  ordemServicoCategoria_ordemServicoCategoria_ordemServicoCategoriaInsercaoUsuarioCodigoTousuario  ordemServicoCategoria[]            @relation("ordemServicoCategoria_ordemServicoCategoriaInsercaoUsuarioCodigoTousuario")
+  ordemServicoCategoria_ordemServicoCategoria_ordemServicoCategoriaAlteracaoUsuarioCodigoTousuario ordemServicoCategoria[]            @relation("ordemServicoCategoria_ordemServicoCategoriaAlteracaoUsuarioCodigoTousuario")
+  ordemServicoEstado_ordemServicoEstado_ordemServicoEstadoInsercaoUsuarioCodigoTousuario           ordemServicoEstado[]               @relation("ordemServicoEstado_ordemServicoEstadoInsercaoUsuarioCodigoTousuario")
+  ordemServicoEstado_ordemServicoEstado_ordemServicoEstadoAlteracaoUsuarioCodigoTousuario          ordemServicoEstado[]               @relation("ordemServicoEstado_ordemServicoEstadoAlteracaoUsuarioCodigoTousuario")
+  ordemServicoHistorico_ordemServicoHistorico_ordemServicoHistoricoDeUsuarioCodigoTousuario        ordemServicoHistorico[]            @relation("ordemServicoHistorico_ordemServicoHistoricoDeUsuarioCodigoTousuario")
+  ordemServicoHistorico_ordemServicoHistorico_ordemServicoHistoricoParaUsuarioCodigoTousuario      ordemServicoHistorico[]            @relation("ordemServicoHistorico_ordemServicoHistoricoParaUsuarioCodigoTousuario")
+  perfil_perfil_perfilInsercaoUsuarioCodigoTousuario                                               perfil[]                           @relation("perfil_perfilInsercaoUsuarioCodigoTousuario")
+  perfil_perfil_perfilAlteracaoUsuarioCodigoTousuario                                              perfil[]                           @relation("perfil_perfilAlteracaoUsuarioCodigoTousuario")
+  prioridade_prioridade_prioridadeInsercaoUsuarioCodigoTousuario                                   prioridade[]                       @relation("prioridade_prioridadeInsercaoUsuarioCodigoTousuario")
+  prioridade_prioridade_prioridadeAlteracaoUsuarioCodigoTousuario                                  prioridade[]                       @relation("prioridade_prioridadeAlteracaoUsuarioCodigoTousuario")
+  sistema_sistema_sistemaInsercaoUsuarioCodigoTousuario                                            sistema[]                          @relation("sistema_sistemaInsercaoUsuarioCodigoTousuario")
+  sistema_sistema_sistemaAlteracaoUsuarioCodigoTousuario                                           sistema[]                          @relation("sistema_sistemaAlteracaoUsuarioCodigoTousuario")
+  tema_tema_temaInsercaoUsuarioCodigoTousuario                                                     tema[]                             @relation("tema_temaInsercaoUsuarioCodigoTousuario")
+  tema_tema_temaAlteracaoUsuarioCodigoTousuario                                                    tema[]                             @relation("tema_temaAlteracaoUsuarioCodigoTousuario")
+  tipoUsuario_tipoUsuario_tipoUsuarioAlteracaoUsuarioCodigoTousuario                               tipoUsuario[]                      @relation("tipoUsuario_tipoUsuarioAlteracaoUsuarioCodigoTousuario")
+  tipoUsuario_tipoUsuario_tipoUsuarioInsercaoUsuarioCodigoTousuario                                tipoUsuario[]                      @relation("tipoUsuario_tipoUsuarioInsercaoUsuarioCodigoTousuario")
+  uf2_uf2_ufInsercaoUsuarioCodigoTousuario                                                         uf2[]                              @relation("uf2_ufInsercaoUsuarioCodigoTousuario")
+  uf2_uf2_ufAlteracaoUsuarioCodigoTousuario                                                        uf2[]                              @relation("uf2_ufAlteracaoUsuarioCodigoTousuario")
+  usuario_usuario_usuarioInsercaoUsuarioCodigoTousuario                                            usuario?                           @relation("usuario_usuarioInsercaoUsuarioCodigoTousuario", fields: [usuarioInsercaoUsuarioCodigo], references: [usuarioCodigo], onDelete: NoAction, map: "usuario_ibfk_11")
+  other_usuario_usuario_usuarioInsercaoUsuarioCodigoTousuario                                      usuario[]                          @relation("usuario_usuarioInsercaoUsuarioCodigoTousuario")
+  usuario_usuario_usuarioAlteracaoUsuarioCodigoTousuario                                           usuario?                           @relation("usuario_usuarioAlteracaoUsuarioCodigoTousuario", fields: [usuarioAlteracaoUsuarioCodigo], references: [usuarioCodigo], onDelete: NoAction, map: "usuario_ibfk_12")
+  other_usuario_usuario_usuarioAlteracaoUsuarioCodigoTousuario                                     usuario[]                          @relation("usuario_usuarioAlteracaoUsuarioCodigoTousuario")
+  cargo_usuario_usuarioCargoCodigoTocargo                                                          cargo?                             @relation("usuario_usuarioCargoCodigoTocargo", fields: [usuarioCargoCodigo], references: [cargoCodigo], onDelete: NoAction, map: "usuario_ibfk_14")
+  filial_usuario_usuarioFilialCodigoTofilial                                                       filial?                            @relation("usuario_usuarioFilialCodigoTofilial", fields: [usuarioFilialCodigo], references: [filialCodigo], onDelete: NoAction, map: "usuario_ibfk_15")
+  departamento_usuario_usuarioDepartamentoCodigoTodepartamento                                     departamento?                      @relation("usuario_usuarioDepartamentoCodigoTodepartamento", fields: [usuarioDepartamentoCodigo], references: [departamentoCodigo], onDelete: NoAction, map: "usuario_ibfk_16")
+  valorExtra_valorExtra_valorExtraInsercaoUsuarioCodigoTousuario                                   valorExtra[]                       @relation("valorExtra_valorExtraInsercaoUsuarioCodigoTousuario")
+  valorExtra_valorExtra_valorExtraAlteracaoUsuarioCodigoTousuario                                  valorExtra[]                       @relation("valorExtra_valorExtraAlteracaoUsuarioCodigoTousuario")
+
+  @@index([usuarioCargoCodigo], map: "cargo")
+  @@index([usuarioCrmPaisCodigo], map: "crmPais")
+  @@index([usuarioDepartamentoCodigo], map: "departamento")
+  @@index([usuarioFilialCodigo], map: "filial")
+  @@index([usuarioAtivoFlag, usuarioContaCodigo], map: "filtroCentral")
+  @@index([usuarioMunicipioCodigo], map: "municipio")
+  @@index([usuarioAlteracaoUsuarioCodigo], map: "usuarioAlteracao")
+  @@index([usuarioAtivoFlag], map: "usuarioAtivoFlag")
+  @@index([usuarioContaCodigo], map: "usuarioContaCodigo")
+  @@index([usuarioInsercaoUsuarioCodigo], map: "usuarioInsercao")
+}

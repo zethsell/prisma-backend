@@ -1,0 +1,18 @@
+model valorExtra {
+  valorExtraCodigo                                             Int                @id @default(autoincrement()) @db.UnsignedInt
+  valorExtraNome                                               String?            @db.VarChar(60)
+  valorExtraDescricao                                          String?            @db.Text
+  valorExtraValor                                              Decimal?           @db.Decimal(5, 2)
+  valorExtraInsercaoDataHora                                   DateTime           @db.DateTime(0)
+  valorExtraInsercaoUsuarioCodigo                              Int                @db.UnsignedInt
+  valorExtraAlteracaoDataHora                                  DateTime           @db.DateTime(0)
+  valorExtraAlteracaoUsuarioCodigo                             Int                @db.UnsignedInt
+  valorExtraContaCodigo                                        Int
+  movimentoExterno                                             movimentoExterno[]
+  usuario_valorExtra_valorExtraInsercaoUsuarioCodigoTousuario  usuario            @relation("valorExtra_valorExtraInsercaoUsuarioCodigoTousuario", fields: [valorExtraInsercaoUsuarioCodigo], references: [usuarioCodigo], onDelete: NoAction, map: "valorExtra_ibfk_1")
+  usuario_valorExtra_valorExtraAlteracaoUsuarioCodigoTousuario usuario            @relation("valorExtra_valorExtraAlteracaoUsuarioCodigoTousuario", fields: [valorExtraAlteracaoUsuarioCodigo], references: [usuarioCodigo], onDelete: NoAction, map: "valorExtra_ibfk_2")
+
+  @@index([valorExtraAlteracaoUsuarioCodigo], map: "usuarioAlteracao")
+  @@index([valorExtraInsercaoUsuarioCodigo], map: "usuarioInsercao")
+  @@index([valorExtraContaCodigo], map: "valorExtraContaCodigo")
+}

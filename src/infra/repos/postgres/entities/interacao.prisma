@@ -1,0 +1,26 @@
+model interacao {
+  interacaoCodigo                                            Int                                     @id @default(autoincrement()) @db.UnsignedInt
+  interacaoInsercaoUsuarioCodigo                             Int?                                    @db.UnsignedInt
+  interacaoOrdemServicoCodigo                                Int                                     @db.UnsignedInt
+  interacaoDescricao                                         String                                  @db.Text
+  interacaoInicioHora                                        DateTime                                @db.Time(0)
+  interacaoFimHora                                           DateTime                                @db.Time(0)
+  interacaoData                                              DateTime                                @db.Date
+  interacaoCobrarFlag                                        interacao_interacaoCobrarFlag           @default(N)
+  interacaoCobrarVerificadoFlag                              interacao_interacaoCobrarVerificadoFlag @default(N)
+  interacaoValorHoraTecnico                                  Decimal?                                @db.Decimal(5, 2)
+  interacaoInsercaoDataHora                                  DateTime                                @db.DateTime(0)
+  interacaoAlteracaoDataHora                                 DateTime                                @db.DateTime(0)
+  interacaoAlteracaoUsuarioCodigo                            Int                                     @db.UnsignedInt
+  interacaoContaCodigo                                       Int
+  interacaoContatoCodigo                                     Int?
+  usuario_interacao_interacaoInsercaoUsuarioCodigoTousuario  usuario?                                @relation("interacao_interacaoInsercaoUsuarioCodigoTousuario", fields: [interacaoInsercaoUsuarioCodigo], references: [usuarioCodigo], onDelete: NoAction, map: "interacao_ibfk_10")
+  usuario_interacao_interacaoAlteracaoUsuarioCodigoTousuario usuario                                 @relation("interacao_interacaoAlteracaoUsuarioCodigoTousuario", fields: [interacaoAlteracaoUsuarioCodigo], references: [usuarioCodigo], onDelete: NoAction, map: "interacao_ibfk_12")
+  ordemServico                                               ordemServico                            @relation(fields: [interacaoOrdemServicoCodigo], references: [ordemServicoCodigo], onDelete: Cascade, map: "interacao_ibfk_13")
+  interacaoAnexo                                             interacaoAnexo[]
+
+  @@index([interacaoContaCodigo], map: "interacaoContaCodigo")
+  @@index([interacaoOrdemServicoCodigo], map: "ordemServico")
+  @@index([interacaoInsercaoUsuarioCodigo], map: "usuario")
+  @@index([interacaoAlteracaoUsuarioCodigo], map: "usuarioAlteracao")
+}

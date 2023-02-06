@@ -1,0 +1,18 @@
+model municipio2 {
+  municipioCodigo                                             String   @id @db.Char(6)
+  municipioUfCodigo                                           Int      @db.UnsignedInt
+  municipioNome                                               String   @db.VarChar(50)
+  municipioInsercaoDataHora                                   DateTime @db.DateTime(0)
+  municipioInsercaoUsuarioCodigo                              Int      @db.UnsignedInt
+  municipioAlteracaoDataHora                                  DateTime @db.DateTime(0)
+  municipioAlteracaoUsuarioCodigo                             Int      @db.UnsignedInt
+  municipioLongitude                                          Decimal? @db.Decimal(10, 0)
+  municipioLatitude                                           Decimal? @db.Decimal(10, 0)
+  usuario_municipio2_municipioInsercaoUsuarioCodigoTousuario  usuario  @relation("municipio2_municipioInsercaoUsuarioCodigoTousuario", fields: [municipioInsercaoUsuarioCodigo], references: [usuarioCodigo], onDelete: NoAction, map: "municipio2_ibfk_2")
+  usuario_municipio2_municipioAlteracaoUsuarioCodigoTousuario usuario  @relation("municipio2_municipioAlteracaoUsuarioCodigoTousuario", fields: [municipioAlteracaoUsuarioCodigo], references: [usuarioCodigo], onDelete: NoAction, map: "municipio2_ibfk_3")
+  uf2                                                         uf2      @relation(fields: [municipioUfCodigo], references: [ufCodigo], onDelete: NoAction, map: "municipio2_ibfk_4")
+
+  @@index([municipioUfCodigo], map: "uf")
+  @@index([municipioAlteracaoUsuarioCodigo], map: "usuarioAlteracao")
+  @@index([municipioInsercaoUsuarioCodigo], map: "usuarioInsercao")
+}

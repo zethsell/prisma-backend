@@ -1,0 +1,34 @@
+model configuracao {
+  configuracaoCodigo                                               Int                                                 @id @default(autoincrement()) @db.UnsignedInt
+  configuracaoUsuarioCodigo                                        Int                                                 @db.UnsignedInt
+  configuracaoTemaCodigo                                           Int?
+  configuracaoMenuCodigo                                           Int?                                                @db.UnsignedInt
+  configuracaoHabilitaIconeFlag                                    configuracao_configuracaoHabilitaIconeFlag          @default(S)
+  configuracaoHabilitaDescricaoIconeFlag                           configuracao_configuracaoHabilitaDescricaoIconeFlag @default(S)
+  configuracaoInsercaoDataHora                                     DateTime?                                           @db.DateTime(0)
+  configuracaoInsercaoUsuarioCodigo                                Int?                                                @db.UnsignedInt
+  configuracaoAlteracaoDataHora                                    DateTime?                                           @db.DateTime(0)
+  configuracaoAlteracaoUsuarioCodigo                               Int?                                                @db.UnsignedInt
+  usuario_configuracao_configuracaoUsuarioCodigoTousuario          usuario                                             @relation("configuracao_configuracaoUsuarioCodigoTousuario", fields: [configuracaoUsuarioCodigo], references: [usuarioCodigo], onDelete: Cascade, map: "configuracao_ibfk_1")
+  usuario_configuracao_configuracaoAlteracaoUsuarioCodigoTousuario usuario?                                            @relation("configuracao_configuracaoAlteracaoUsuarioCodigoTousuario", fields: [configuracaoAlteracaoUsuarioCodigo], references: [usuarioCodigo], map: "configuracao_ibfk_10")
+  tema                                                             tema?                                               @relation(fields: [configuracaoTemaCodigo], references: [temaCodigo], onDelete: Cascade, map: "configuracao_ibfk_2")
+  menu                                                             menu?                                               @relation(fields: [configuracaoMenuCodigo], references: [menuCodigo], onDelete: Cascade, map: "configuracao_ibfk_3")
+  usuario_configuracao_configuracaoInsercaoUsuarioCodigoTousuario  usuario?                                            @relation("configuracao_configuracaoInsercaoUsuarioCodigoTousuario", fields: [configuracaoInsercaoUsuarioCodigo], references: [usuarioCodigo], map: "configuracao_ibfk_9")
+
+  @@index([configuracaoMenuCodigo], map: "menu")
+  @@index([configuracaoTemaCodigo], map: "tema")
+  @@index([configuracaoUsuarioCodigo], map: "usuario")
+  @@index([configuracaoAlteracaoUsuarioCodigo], map: "usuarioAlteracao")
+  @@index([configuracaoInsercaoUsuarioCodigo], map: "usuarioInsercao")
+}
+
+enum configuracao_configuracaoHabilitaIconeFlag {
+  S
+  N
+}
+
+enum configuracao_configuracaoHabilitaDescricaoIconeFlag {
+  S
+  N
+}
+

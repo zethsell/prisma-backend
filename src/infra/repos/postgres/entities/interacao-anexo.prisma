@@ -1,0 +1,13 @@
+model interacaoAnexo {
+  interacaoAnexoCodigo                Int       @id @default(autoincrement()) @db.UnsignedInt
+  interacaoAnexoInteracaoCodigo       Int       @db.UnsignedInt
+  interacaoAnexoNome                  String    @db.VarChar(60)
+  interacaoAnexoExtensao              String    @db.VarChar(4)
+  interacaoAnexoInsercaoDataHora      DateTime  @db.DateTime(0)
+  interacaoAnexoInsercaoUsuarioCodigo Int       @db.UnsignedInt
+  usuario                             usuario   @relation(fields: [interacaoAnexoInsercaoUsuarioCodigo], references: [usuarioCodigo], onDelete: NoAction, map: "interacaoAnexo_ibfk_2")
+  interacao                           interacao @relation(fields: [interacaoAnexoInteracaoCodigo], references: [interacaoCodigo], onDelete: Cascade, map: "interacaoAnexo_ibfk_3")
+
+  @@index([interacaoAnexoInteracaoCodigo], map: "interacao")
+  @@index([interacaoAnexoInsercaoUsuarioCodigo], map: "usuarioInsercao")
+}

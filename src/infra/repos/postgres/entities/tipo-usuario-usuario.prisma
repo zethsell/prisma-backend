@@ -1,0 +1,8 @@
+model tipoUsuarioUsuario {
+  tipoUsuarioUsuarioTipoUsuarioCodigo Int @db.UnsignedInt
+  tipoUsuarioUsuarioUsuarioCodigo     Int @db.UnsignedInt
+
+  @@id([tipoUsuarioUsuarioTipoUsuarioCodigo, tipoUsuarioUsuarioUsuarioCodigo])
+  @@index([tipoUsuarioUsuarioTipoUsuarioCodigo], map: "tipoUsuario")
+  @@index([tipoUsuarioUsuarioUsuarioCodigo], map: "usuario")
+}

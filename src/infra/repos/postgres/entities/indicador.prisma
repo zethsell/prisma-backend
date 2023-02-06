@@ -1,0 +1,16 @@
+model indicador {
+  indicadorCodigo                 Int                             @id @default(autoincrement()) @db.UnsignedInt
+  indicadorIndicadorTipoCodigo    Int
+  indicadorIndicadorGrupoCodigo   Int                             @db.UnsignedInt
+  indicadorNome                   String?                         @db.VarChar(40)
+  indicadorNomeTecnico            String?                         @db.VarChar(20)
+  indicadorPeriodoFlag            indicador_indicadorPeriodoFlag?
+  indicadorFormula                String?                         @db.VarChar(200)
+  indicadorInsercaoUsuarioCodigo  Int?
+  indicadorInsercaoDataHora       DateTime?                       @db.DateTime(0)
+  indicadorAlteracaoUsuarioCodigo Int?
+  indicadorAlteracaoDataHora      DateTime?                       @db.DateTime(0)
+
+  @@index([indicadorIndicadorGrupoCodigo], map: "indicadorGrupoCodigo")
+  @@index([indicadorIndicadorTipoCodigo], map: "indicadorTipoCodigo")
+}

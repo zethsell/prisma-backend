@@ -1,0 +1,14 @@
+model icone {
+  iconeCodigo                                        Int       @id @default(autoincrement()) @db.UnsignedInt
+  iconeNome                                          String    @db.VarChar(50)
+  iconeExtensao                                      String    @db.Char(3)
+  iconeInsercaoDataHora                              DateTime? @db.DateTime(0)
+  iconeInsercaoUsuarioCodigo                         Int?      @db.UnsignedInt
+  iconeAlteracaoDataHora                             DateTime? @db.DateTime(0)
+  iconeAlteracaoUsuarioCodigo                        Int?      @db.UnsignedInt
+  usuario_icone_iconeInsercaoUsuarioCodigoTousuario  usuario?  @relation("icone_iconeInsercaoUsuarioCodigoTousuario", fields: [iconeInsercaoUsuarioCodigo], references: [usuarioCodigo], onDelete: NoAction, map: "icone_ibfk_1")
+  usuario_icone_iconeAlteracaoUsuarioCodigoTousuario usuario?  @relation("icone_iconeAlteracaoUsuarioCodigoTousuario", fields: [iconeAlteracaoUsuarioCodigo], references: [usuarioCodigo], onDelete: NoAction, map: "icone_ibfk_2")
+
+  @@index([iconeAlteracaoUsuarioCodigo], map: "usuarioAlteracao")
+  @@index([iconeInsercaoUsuarioCodigo], map: "usuarioInsercao")
+}

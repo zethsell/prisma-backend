@@ -1,0 +1,9 @@
+model usuarioBS {
+  usuarioBSUsuarioCodigo Int      @db.UnsignedInt
+  usuarioBSEmpresaCodigo Int?     @db.UnsignedInt
+  usuarioBSValorHora     Decimal? @db.Decimal(5, 2)
+
+  @@index([usuarioBSUsuarioCodigo], map: "usuarioBSUsuarioCodigo")
+  @@index([usuarioBSEmpresaCodigo], map: "usuarioHelpDeskEmpresaCodigo")
+  @@ignore
+}

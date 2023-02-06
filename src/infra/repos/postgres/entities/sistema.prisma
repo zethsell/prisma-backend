@@ -1,0 +1,17 @@
+model sistema {
+  sistemaCodigo                                          Int      @id @default(autoincrement()) @db.UnsignedInt
+  sistemaEmpresaCodigo                                   Int      @db.UnsignedInt
+  sistemaNome                                            String   @db.VarChar(60)
+  sistemaDescricao                                       String   @db.Text
+  sistemaInsercaoDataHora                                DateTime @db.DateTime(0)
+  sistemaInsercaoUsuarioCodigo                           Int      @db.UnsignedInt
+  sistemaAlteracaoDataHora                               DateTime @db.DateTime(0)
+  sistemaAlteracaoUsuarioCodigo                          Int      @db.UnsignedInt
+  empresa                                                empresa  @relation(fields: [sistemaEmpresaCodigo], references: [empresaCodigo], map: "sistema_ibfk_1")
+  usuario_sistema_sistemaInsercaoUsuarioCodigoTousuario  usuario  @relation("sistema_sistemaInsercaoUsuarioCodigoTousuario", fields: [sistemaInsercaoUsuarioCodigo], references: [usuarioCodigo], onDelete: NoAction, map: "sistema_ibfk_2")
+  usuario_sistema_sistemaAlteracaoUsuarioCodigoTousuario usuario  @relation("sistema_sistemaAlteracaoUsuarioCodigoTousuario", fields: [sistemaAlteracaoUsuarioCodigo], references: [usuarioCodigo], onDelete: NoAction, map: "sistema_ibfk_3")
+
+  @@index([sistemaEmpresaCodigo], map: "empresa")
+  @@index([sistemaAlteracaoUsuarioCodigo], map: "usuarioAlteracao")
+  @@index([sistemaInsercaoUsuarioCodigo], map: "usuarioInsercao")
+}

@@ -1,0 +1,14 @@
+model modulo {
+  moduloCodigo                 Int      @id @default(autoincrement()) @db.UnsignedInt
+  moduloSistemaCodigo          Int      @db.UnsignedInt
+  moduloNome                   String   @db.VarChar(60)
+  moduloDescricao              String   @db.Text
+  moduloInsercaoDataHora       DateTime @db.DateTime(0)
+  moduloInsercaoUsuarioCodigo  Int      @db.UnsignedInt
+  moduloAlteracaoDataHora      DateTime @db.DateTime(0)
+  moduloAlteracaoUsuarioCodigo Int      @db.UnsignedInt
+
+  @@index([moduloSistemaCodigo], map: "sistema")
+  @@index([moduloAlteracaoUsuarioCodigo], map: "usuarioAlteracao")
+  @@index([moduloInsercaoUsuarioCodigo], map: "usuarioInsercao")
+}

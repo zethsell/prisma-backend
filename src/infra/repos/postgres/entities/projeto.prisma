@@ -1,0 +1,24 @@
+model projeto {
+  projetoCodigo                 Int                         @id @default(autoincrement()) @db.UnsignedInt
+  projetoProjetoEstadoCodigo    Int                         @db.UnsignedInt
+  projetoEmpresaCodigo          Int                         @db.UnsignedInt
+  projetoTitulo                 String                      @db.VarChar(50)
+  projetoObservacao             String                      @db.Text
+  projetoExcluidoFlag           projeto_projetoExcluidoFlag @default(N)
+  projetoInicioData             DateTime?                   @db.Date
+  projetoPrazo                  Int?                        @db.UnsignedInt
+  projetoRealizacaoPercentual   Int?                        @db.UnsignedInt
+  projetoHorasPrevistas         Decimal?                    @db.Decimal(7, 2)
+  projetoCobrarFlag             projeto_projetoCobrarFlag   @default(N)
+  projetoInsercaoDataHora       DateTime?                   @db.DateTime(0)
+  projetoInsercaoUsuarioCodigo  Int?                        @db.UnsignedInt
+  projetoAlteracaoDataHora      DateTime?                   @db.DateTime(0)
+  projetoAlteracaoUsuarioCodigo Int?                        @db.UnsignedInt
+  projetoContaCodigo            Int
+  projetoEntregaPrevistaData    DateTime?                   @db.Date
+  projetoPrevisaoFechamento     Int?
+
+  @@index([projetoEmpresaCodigo], map: "empresa")
+  @@index([projetoContaCodigo], map: "projetoContaCodigo")
+  @@index([projetoProjetoEstadoCodigo], map: "projetoEstado")
+}

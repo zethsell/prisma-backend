@@ -1,0 +1,13 @@
+model slotHoras {
+  id                   Int                           @id @default(autoincrement()) @db.UnsignedInt
+  projetoCodigo        Int?
+  produtoEmpresaCodigo Int?
+  mesAno               String                        @db.VarChar(10)
+  projetoContratoFlag  slotHoras_projetoContratoFlag
+  horasPrevistas       Int                           @default(0)
+}
+
+enum slotHoras_projetoContratoFlag {
+  projeto
+  contrato
+}

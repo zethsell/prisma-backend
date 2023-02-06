@@ -1,0 +1,24 @@
+model financeiroTitulo {
+  financeiroTituloCodigo                     Int                                                @id @default(autoincrement()) @db.UnsignedInt
+  financeiroTituloFinanceiroPlanoContaCodigo Int                                                @db.UnsignedInt
+  financeiroTituloFinanceiroContaCodigo      Int
+  financeiroTituloFinanceiroTituloTipoCodigo Int                                                @db.UnsignedInt
+  financeiroTituloCreditoDebitoFlag          financeiroTitulo_financeiroTituloCreditoDebitoFlag
+  financeiroTituloValor                      Decimal?                                           @db.Decimal(10, 2)
+  financeiroTituloVencimentoData             DateTime?                                          @db.Date
+  financeiroTituloPagoFlag                   financeiroTitulo_financeiroTituloPagoFlag?
+  financeiroTituloPagamentoData              DateTime?                                          @db.Date
+  financeiroTituloPagamentoValor             Decimal?                                           @db.Decimal(10, 2)
+  financeiroTituloJurosValor                 Decimal?                                           @db.Decimal(10, 2)
+  financeiroTituloInsercaoDataHora           DateTime?                                          @db.DateTime(0)
+  financeiroTituloInsercaoUsuarioCodigo      Int?                                               @db.UnsignedInt
+  financeiroTituloAlteracaoDataHora          DateTime?                                          @db.DateTime(0)
+  financeiroTituloAlteracaoUsuarioCodigo     Int?                                               @db.UnsignedInt
+  financeiroPlanoConta                       financeiroPlanoConta                               @relation(fields: [financeiroTituloFinanceiroPlanoContaCodigo], references: [financeiroPlanoContaCodigo], onUpdate: Restrict, map: "financeiroTitulo_ibfk_1")
+  financeiroConta                            financeiroConta                                    @relation(fields: [financeiroTituloFinanceiroContaCodigo], references: [financeiroContaCodigo], onUpdate: Restrict, map: "financeiroTitulo_ibfk_2")
+  financeiroTituloTipo                       financeiroTituloTipo                               @relation(fields: [financeiroTituloFinanceiroTituloTipoCodigo], references: [financeiroTituloTipoCodigo], onUpdate: Restrict, map: "financeiroTitulo_ibfk_3")
+
+  @@index([financeiroTituloFinanceiroContaCodigo], map: "financeiroContaCodigo")
+  @@index([financeiroTituloFinanceiroPlanoContaCodigo], map: "financeiroPlanoContaCodigo")
+  @@index([financeiroTituloFinanceiroTituloTipoCodigo], map: "financeiroTituloTipoCodigo")
+}

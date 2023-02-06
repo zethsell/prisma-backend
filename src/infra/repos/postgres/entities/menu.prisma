@@ -1,0 +1,34 @@
+model menu {
+  menuCodigo                                       Int                         @id @default(autoincrement()) @db.UnsignedInt
+  menuMenuCodigo                                   Int?                        @db.UnsignedInt
+  menuIconeCodigo                                  Int?                        @db.UnsignedInt
+  menuCaminho                                      String?                     @db.VarChar(100)
+  menuDescricao                                    String                      @db.VarChar(50)
+  menuNome                                         String                      @db.VarChar(30)
+  menuNivel                                        Int
+  menuOrdem                                        Int?
+  menuJavaScript                                   String?                     @db.VarChar(100)
+  menuExibeFlag                                    menu_menuExibeFlag          @default(S)
+  menuFixoFlag                                     menu_menuFixoFlag           @default(N)
+  menuExibeIconeFlag                               menu_menuExibeIconeFlag     @default(N)
+  menuDireitoFlag                                  menu_menuDireitoFlag        @default(S)
+  menuPublicoFlag                                  menu_menuPublicoFlag        @default(N)
+  menuInsercaoDataHora                             DateTime?                   @db.DateTime(0)
+  menuInsercaoUsuarioCodigo                        Int?                        @db.UnsignedInt
+  menuAlteracaoDataHora                            DateTime?                   @db.DateTime(0)
+  menuAlteracaoUsuarioCodigo                       Int?                        @db.UnsignedInt
+  menuPaginaInicialFlag                            menu_menuPaginaInicialFlag?
+  menuContadorSql                                  String?                     @db.Text
+  ajuda                                            ajuda[]
+  arquivo                                          arquivo[]
+  atalho                                           atalho[]
+  configuracao                                     configuracao[]
+  usuario_menu_menuInsercaoUsuarioCodigoTousuario  usuario?                    @relation("menu_menuInsercaoUsuarioCodigoTousuario", fields: [menuInsercaoUsuarioCodigo], references: [usuarioCodigo], map: "menu_ibfk_3")
+  usuario_menu_menuAlteracaoUsuarioCodigoTousuario usuario?                    @relation("menu_menuAlteracaoUsuarioCodigoTousuario", fields: [menuAlteracaoUsuarioCodigo], references: [usuarioCodigo], map: "menu_ibfk_4")
+  menuUsuario                                      menuUsuario[]
+
+  @@index([menuIconeCodigo], map: "icone")
+  @@index([menuMenuCodigo], map: "menu")
+  @@index([menuAlteracaoUsuarioCodigo], map: "usuarioAlteracao")
+  @@index([menuInsercaoUsuarioCodigo], map: "usuarioInsercao")
+}

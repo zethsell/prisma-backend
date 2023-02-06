@@ -1,0 +1,18 @@
+model relatorio {
+  relatorioCodigo                 Int                                 @id @default(autoincrement()) @db.UnsignedInt
+  relatorioNome                   String?                             @db.VarChar(30)
+  relatorioDescricao              String?                             @db.VarChar(255)
+  relatorioDeData                 DateTime?                           @db.Date
+  relatorioAteData                DateTime?                           @db.Date
+  relatorioIndicadorGrupoCodigo   Int?                                @db.UnsignedInt
+  relatorioOrdem                  Int?
+  relatorioInsercaoUsuarioCodigo  Int?
+  relatorioInsercaoDataHora       DateTime?                           @db.DateTime(0)
+  relatorioAlteracaoUsuarioCodigo Int?
+  relatorioAlteracaoDataHora      DateTime?                           @db.DateTime(0)
+  relatorioTipoGrafico            Int?
+  relatorioTamanhoFlag            relatorio_relatorioTamanhoFlag?
+  relatorioMostrarMediaFlag       relatorio_relatorioMostrarMediaFlag
+
+  @@index([relatorioIndicadorGrupoCodigo], map: "indicadorGrupoCodigo")
+}

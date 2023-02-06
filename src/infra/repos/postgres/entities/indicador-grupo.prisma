@@ -1,0 +1,9 @@
+model indicadorGrupo {
+  indicadorGrupoCodigo                 Int       @id @default(autoincrement()) @db.UnsignedInt
+  indicadorGrupoNome                   String    @db.VarChar(20)
+  indicadorGrupoDescricao              String?   @db.VarChar(200)
+  indicadorGrupoInsercaoUsuarioCodigo  Int?
+  indicadorGrupoInsercaoDataHora       DateTime? @db.DateTime(0)
+  indicadorGrupoAlteracaoUsuarioCodigo Int?
+  indicadorGrupoAlteracaoDataHora      DateTime? @db.DateTime(0)
+}

@@ -1,0 +1,21 @@
+model filial {
+  filialCodigo                                         Int       @id @default(autoincrement())
+  filialNome                                           String    @db.VarChar(50)
+  filialEndereco                                       String    @db.VarChar(70)
+  filialEnderecoNumero                                 Int?
+  filialTelefone                                       String    @db.VarChar(13)
+  filialInsercaoDataHora                               DateTime? @db.DateTime(0)
+  filialInsercaoUsuarioCodigo                          Int?      @db.UnsignedInt
+  filialAlteracaoDataHora                              DateTime? @db.DateTime(0)
+  filialAlteracaoUsuarioCodigo                         Int?      @db.UnsignedInt
+  filialContaCodigo                                    Int       @db.UnsignedInt
+  filialCnpjNumero                                     String?   @db.VarChar(18)
+  filialUrlSite                                        String?   @db.VarChar(30)
+  filialRazaoSocial                                    String?   @db.VarChar(30)
+  usuario_filial_filialInsercaoUsuarioCodigoTousuario  usuario?  @relation("filial_filialInsercaoUsuarioCodigoTousuario", fields: [filialInsercaoUsuarioCodigo], references: [usuarioCodigo], onDelete: NoAction, map: "filial_ibfk_3")
+  usuario_filial_filialAlteracaoUsuarioCodigoTousuario usuario?  @relation("filial_filialAlteracaoUsuarioCodigoTousuario", fields: [filialAlteracaoUsuarioCodigo], references: [usuarioCodigo], onDelete: NoAction, map: "filial_ibfk_4")
+  usuario_usuario_usuarioFilialCodigoTofilial          usuario[] @relation("usuario_usuarioFilialCodigoTofilial")
+
+  @@index([filialAlteracaoUsuarioCodigo], map: "usuarioAlteracao")
+  @@index([filialInsercaoUsuarioCodigo], map: "usuarioInsercao")
+}

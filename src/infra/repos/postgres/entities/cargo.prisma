@@ -1,0 +1,15 @@
+model cargo {
+  cargoCodigo                                        Int                 @id @default(autoincrement()) @db.UnsignedInt
+  cargoNome                                          String?             @db.VarChar(50)
+  cargoInsercaoDataHora                              DateTime?           @db.DateTime(0)
+  cargoInsercaoUsuarioCodigo                         Int?                @db.UnsignedInt
+  cargoAlteracaoDataHora                             DateTime?           @db.DateTime(0)
+  cargoAlteracaoUsuarioCodigo                        Int?                @db.UnsignedInt
+  usuario_cargo_cargoInsercaoUsuarioCodigoTousuario  usuario?            @relation("cargo_cargoInsercaoUsuarioCodigoTousuario", fields: [cargoInsercaoUsuarioCodigo], references: [usuarioCodigo], map: "cargo_ibfk_3")
+  usuario_cargo_cargoAlteracaoUsuarioCodigoTousuario usuario?            @relation("cargo_cargoAlteracaoUsuarioCodigoTousuario", fields: [cargoAlteracaoUsuarioCodigo], references: [usuarioCodigo], map: "cargo_ibfk_4")
+  cargoDepartamento                                  cargoDepartamento[]
+  usuario_usuario_usuarioCargoCodigoTocargo          usuario[]           @relation("usuario_usuarioCargoCodigoTocargo")
+
+  @@index([cargoAlteracaoUsuarioCodigo], map: "usuarioAlteracao")
+  @@index([cargoInsercaoUsuarioCodigo], map: "usuarioInsercao")
+}

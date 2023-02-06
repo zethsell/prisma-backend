@@ -1,0 +1,13 @@
+model centroCusto {
+  centroCustoCodigo                 Int                              @id @default(autoincrement())
+  centroCustoNome                   String                           @db.VarChar(60)
+  centroCustoDescricao              String?                          @db.Text
+  centroCustoInsercaoDataHora       DateTime?                        @db.DateTime(0)
+  centroCustoInsercaoUsuarioCodigo  Int?
+  centroCustoAlteracaoDataHora      DateTime?                        @db.DateTime(0)
+  centroCustoAlteracaoUsuarioCodigo Int?
+  centroCustoAtivoFlag              centroCusto_centroCustoAtivoFlag @default(S)
+  centroCustoContaCodigo            Int
+
+  @@index([centroCustoContaCodigo], map: "centroCustoContaCodigo")
+}

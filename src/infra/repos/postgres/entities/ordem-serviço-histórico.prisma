@@ -1,0 +1,20 @@
+model ordemServicoHistorico {
+  ordemServicoHistoricoCodigo                                                   Int                       @id @default(autoincrement()) @db.UnsignedInt
+  ordemServicoHistoricoTipoOrdemServicoHistoricoCodigo                          Int                       @db.UnsignedInt
+  ordemServicoHistoricoParaUsuarioCodigo                                        Int                       @db.UnsignedInt
+  ordemServicoHistoricoDeUsuarioCodigo                                          Int                       @db.UnsignedInt
+  ordemServicoHistoricoObservacao                                               String?                   @db.Text
+  ordemServicoHistoricoOrdemServicoCodigo                                       Int                       @db.UnsignedInt
+  ordemServicoHistoricoInsercaoDataHora                                         DateTime                  @db.DateTime(0)
+  ordemServicoHistoricoInsercaoUsuarioCodigo                                    Int                       @db.UnsignedInt
+  ordemServico                                                                  ordemServico              @relation(fields: [ordemServicoHistoricoOrdemServicoCodigo], references: [ordemServicoCodigo], onDelete: Cascade, map: "ordemServicoHistorico_ibfk_1")
+  usuario_ordemServicoHistorico_ordemServicoHistoricoDeUsuarioCodigoTousuario   usuario                   @relation("ordemServicoHistorico_ordemServicoHistoricoDeUsuarioCodigoTousuario", fields: [ordemServicoHistoricoDeUsuarioCodigo], references: [usuarioCodigo], map: "ordemServicoHistorico_ibfk_2")
+  usuario_ordemServicoHistorico_ordemServicoHistoricoParaUsuarioCodigoTousuario usuario                   @relation("ordemServicoHistorico_ordemServicoHistoricoParaUsuarioCodigoTousuario", fields: [ordemServicoHistoricoParaUsuarioCodigo], references: [usuarioCodigo], onDelete: NoAction, onUpdate: NoAction, map: "ordemServicoHistorico_ibfk_3")
+  tipoOrdemServicoHistorico                                                     tipoOrdemServicoHistorico @relation(fields: [ordemServicoHistoricoTipoOrdemServicoHistoricoCodigo], references: [tipoOrdemServicoHistoricoCodigo], map: "ordemServicoHistorico_ibfk_4")
+
+  @@index([ordemServicoHistoricoDeUsuarioCodigo], map: "deUsuario")
+  @@index([ordemServicoHistoricoOrdemServicoCodigo], map: "ordemServico")
+  @@index([ordemServicoHistoricoParaUsuarioCodigo], map: "paraUsuario")
+  @@index([ordemServicoHistoricoTipoOrdemServicoHistoricoCodigo], map: "tipoOrdemServicoHistorico")
+  @@index([ordemServicoHistoricoInsercaoUsuarioCodigo], map: "usuarioInsercao")
+}

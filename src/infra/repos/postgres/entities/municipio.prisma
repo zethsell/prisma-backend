@@ -1,0 +1,10 @@
+model municipio {
+  municipioCodigo    Int      @id @default(autoincrement())
+  municipioNumero    String   @default("") @db.VarChar(6)
+  municipioUfCodigo  Int      @default(0) @db.UnsignedInt
+  municipioNome      String   @default("") @db.VarChar(50)
+  municipioLongitude Decimal? @db.Decimal(10, 0)
+  municipioLatitude  Decimal? @db.Decimal(10, 0)
+
+  @@index([municipioUfCodigo], map: "uf")
+}

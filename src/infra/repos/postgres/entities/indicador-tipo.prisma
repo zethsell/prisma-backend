@@ -1,0 +1,9 @@
+model indicadorTipo {
+  indicadorTipoCodigo                 Int       @id @default(autoincrement())
+  indicadorTipoNome                   String?   @db.VarChar(20)
+  indicadorTipoNomeTecnico            String?   @db.VarChar(10)
+  indicadorTipoInsercaoUsuarioCodigo  Int?
+  indicadorTipoInsercaoDataHora       DateTime? @db.DateTime(0)
+  indicadorTipoAlteracaoUsuarioCodigo Int?
+  indicadorTipoAlteracaoDataHora      DateTime? @db.DateTime(0)
+}

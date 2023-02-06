@@ -1,0 +1,10 @@
+model financeiroPlanoConta {
+  financeiroPlanoContaCodigo                 Int                @id @default(autoincrement()) @db.UnsignedInt
+  financeiroPlanoContaNome                   String?            @db.VarChar(20)
+  financeiroPlanoContaDescricao              String?            @db.VarChar(200)
+  financeiroPlanoContaInsercaoDataHora       DateTime?          @db.DateTime(0)
+  financeiroPlanoContaInsercaoUsuarioCodigo  Int?               @db.UnsignedInt
+  financeiroPlanoContaAlteracaoDataHora      DateTime?          @db.DateTime(0)
+  financeiroPlanoContaAlteracaoUsuarioCodigo Int?               @db.UnsignedInt
+  financeiroTitulo                           financeiroTitulo[]
+}

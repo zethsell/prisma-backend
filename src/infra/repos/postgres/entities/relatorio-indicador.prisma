@@ -1,0 +1,10 @@
+model relatorioIndicador {
+  relatorioIndicadorCodigo                Int       @id @default(autoincrement()) @db.UnsignedInt
+  relatorioIndicadorRelatorioCodigo       Int       @db.UnsignedInt
+  relatorioIndicadorIndicadorCodigo       Int       @db.UnsignedInt
+  relatorioIndicadorInsercaoUsuarioCodigo Int?
+  relatorioIndicadorInsercaoDataHora      DateTime? @db.DateTime(0)
+
+  @@index([relatorioIndicadorIndicadorCodigo], map: "indicadorCodigo")
+  @@index([relatorioIndicadorRelatorioCodigo], map: "relatorioCodigo")
+}

@@ -1,0 +1,15 @@
+model tema {
+  temaCodigo                                       Int            @id @default(autoincrement())
+  temaNome                                         String         @db.VarChar(30)
+  temaUrlCss                                       String         @db.VarChar(100)
+  temaInsercaoDataHora                             DateTime?      @db.DateTime(0)
+  temaInsercaoUsuarioCodigo                        Int?           @db.UnsignedInt
+  temaAlteracaoDataHora                            DateTime?      @db.DateTime(0)
+  temaAlteracaoUsuarioCodigo                       Int?           @db.UnsignedInt
+  configuracao                                     configuracao[]
+  usuario_tema_temaInsercaoUsuarioCodigoTousuario  usuario?       @relation("tema_temaInsercaoUsuarioCodigoTousuario", fields: [temaInsercaoUsuarioCodigo], references: [usuarioCodigo], onDelete: NoAction, map: "tema_ibfk_1")
+  usuario_tema_temaAlteracaoUsuarioCodigoTousuario usuario?       @relation("tema_temaAlteracaoUsuarioCodigoTousuario", fields: [temaAlteracaoUsuarioCodigo], references: [usuarioCodigo], onDelete: NoAction, map: "tema_ibfk_2")
+
+  @@index([temaAlteracaoUsuarioCodigo], map: "usuarioAlteracao")
+  @@index([temaInsercaoUsuarioCodigo], map: "usuarioInsercao")
+}

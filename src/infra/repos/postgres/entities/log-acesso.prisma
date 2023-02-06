@@ -1,0 +1,9 @@
+model logAcesso {
+  logAcessoCodigo             Int       @id @default(autoincrement())
+  logAcessoEntradaDataHora    DateTime? @db.DateTime(0)
+  logAcessoSaidaDataHora      DateTime? @db.DateTime(0)
+  logAcessoUsuarioCodigo      Int?
+  logAcessoIp                 String?   @db.VarChar(15)
+  logAcessoNavegador          String?   @db.VarChar(20)
+  logAcessoSistemaOperacional String?   @db.VarChar(20)
+}

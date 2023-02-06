@@ -1,0 +1,8 @@
+model contaCobranca {
+  contaCobrancaCodigo         Int       @id @default(autoincrement()) @db.UnsignedInt
+  contaCobrancaContaCodigo    Int       @db.UnsignedInt
+  contaCobrancaValor          Float?
+  contaCobrancaVencimentoData DateTime? @db.Date
+
+  @@index([contaCobrancaContaCodigo], map: "contaCobrancaContaCodigo")
+}

@@ -1,0 +1,8 @@
+model usuarioPerfil {
+  usuarioPerfilPerfilCodigo  Int @db.UnsignedInt
+  usuarioPerfilUsuarioCodigo Int @db.UnsignedInt
+
+  @@id([usuarioPerfilPerfilCodigo, usuarioPerfilUsuarioCodigo])
+  @@index([usuarioPerfilPerfilCodigo], map: "perfil")
+  @@index([usuarioPerfilUsuarioCodigo], map: "usuario")
+}

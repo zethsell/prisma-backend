@@ -1,0 +1,13 @@
+model projetoEstado {
+  projetoEstadoCodigo                 Int       @id @default(autoincrement()) @db.UnsignedInt
+  projetoEstadoNome                   String?   @db.VarChar(50)
+  projetoEstadoDescricao              String?   @db.Text
+  projetoEstadoInsercaoDataHora       DateTime? @db.DateTime(0)
+  projetoEstadoInsercaoUsuarioCodigo  Int?      @db.UnsignedInt
+  projetoEstadoAlteracaoDataHora      DateTime? @db.DateTime(0)
+  projetoEstadoAlteracaoUsuarioCodigo Int?      @db.UnsignedInt
+  projetoEstadoContaCodigo            Int
+  projetoEstadoOrdem                  Int?
+
+  @@index([projetoEstadoContaCodigo], map: "projetoEstadoContaCodigo")
+}

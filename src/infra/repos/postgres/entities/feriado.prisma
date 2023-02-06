@@ -1,0 +1,21 @@
+model feriado {
+  feriadoCodigo                                          Int                      @id @default(autoincrement()) @db.UnsignedInt
+  feriadoNome                                            String                   @db.VarChar(40)
+  feriadoMesDia                                          String                   @db.VarChar(5)
+  feriadoAno                                             Int?                     @db.Year
+  feriadoAnualFlag                                       feriado_feriadoAnualFlag @default(S)
+  feriadoInsercaoDataHora                                DateTime                 @db.DateTime(0)
+  feriadoInsercaoUsuarioCodigo                           Int                      @db.UnsignedInt
+  feriadoAlteracaoDataHora                               DateTime                 @db.DateTime(0)
+  feriadoAlteracaoUsuarioCodigo                          Int                      @db.UnsignedInt
+  usuario_feriado_feriadoInsercaoUsuarioCodigoTousuario  usuario                  @relation("feriado_feriadoInsercaoUsuarioCodigoTousuario", fields: [feriadoInsercaoUsuarioCodigo], references: [usuarioCodigo], onDelete: NoAction, map: "feriado_ibfk_1")
+  usuario_feriado_feriadoAlteracaoUsuarioCodigoTousuario usuario                  @relation("feriado_feriadoAlteracaoUsuarioCodigoTousuario", fields: [feriadoAlteracaoUsuarioCodigo], references: [usuarioCodigo], onDelete: NoAction, map: "feriado_ibfk_2")
+
+  @@index([feriadoAlteracaoUsuarioCodigo], map: "usuarioAlteracao")
+  @@index([feriadoInsercaoUsuarioCodigo], map: "usuarioInsercao")
+}
+
+enum feriado_feriadoAnualFlag {
+  S
+  N
+}

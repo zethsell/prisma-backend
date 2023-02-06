@@ -1,0 +1,9 @@
+model contratoTipo {
+  contratoTipoCodigo                 Int       @id @default(autoincrement())
+  contratoTipoNome                   String?   @db.VarChar(45)
+  contratoTipoInsercaoUsuarioCodigo  Int?
+  contratoTipoInsercaoDataHora       DateTime? @db.DateTime(0)
+  contratoTipoAlteracaoDataHora      DateTime? @db.DateTime(0)
+  contratoTipoAlteracaoUsuarioCodigo Int?
+  contratoTipoContaCodigo            Int?
+}

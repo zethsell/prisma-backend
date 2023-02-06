@@ -1,0 +1,16 @@
+model ordemServicoEstado {
+  ordemServicoEstadoCodigo                                                     Int            @id @default(autoincrement()) @db.UnsignedInt
+  ordemServicoEstadoNome String @db.VarChar(50)
+  ordemServicoEstadoDescricao                                                  String         @db.Text
+  ordemServicoEstadoInsercaoDataHora                                           DateTime       @db.DateTime(0)
+  ordemServicoEstadoInsercaoUsuarioCodigo                                      Int            @db.UnsignedInt
+  ordemServicoEstadoAlteracaoDataHora                                          DateTime       @db.DateTime(0)
+  ordemServicoEstadoAlteracaoUsuarioCodigo                                     Int            @db.UnsignedInt
+  ordemServico                                                                 ordemServico[]
+  usuario_ordemServicoEstado_ordemServicoEstadoInsercaoUsuarioCodigoTousuario  usuario        @relation("ordemServicoEstado_ordemServicoEstadoInsercaoUsuarioCodigoTousuario", fields: [ordemServicoEstadoInsercaoUsuarioCodigo], references: [usuarioCodigo], onDelete: NoAction, map: "ordemServicoEstado_ibfk_1")
+  usuario_ordemServicoEstado_ordemServicoEstadoAlteracaoUsuarioCodigoTousuario usuario        @relation("ordemServicoEstado_ordemServicoEstadoAlteracaoUsuarioCodigoTousuario", fields: [ordemServicoEstadoAlteracaoUsuarioCodigo], references: [usuarioCodigo], onDelete: NoAction, map: "ordemServicoEstado_ibfk_2")
+
+  @@index([ordemServicoEstadoNome], map: "orderServicoEstadoNome")
+  @@index([ordemServicoEstadoAlteracaoUsuarioCodigo], map: "usuarioAlteracao")
+  @@index([ordemServicoEstadoInsercaoUsuarioCodigo], map: "usuarioInsercao")
+}

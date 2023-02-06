@@ -1,0 +1,8 @@
+model ufTemp {
+  ufCodigo  Int    @id @default(autoincrement()) @db.UnsignedInt
+  ufPaisIso String @db.Char(2)
+  ufNome    String @db.VarChar(40)
+  ufSigla   String @db.Char(2)
+
+  @@index([ufPaisIso], map: "crmPaisCodigo")
+}

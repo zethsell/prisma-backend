@@ -1,0 +1,17 @@
+model ajuda {
+  ajudaCodigo                                        Int       @id @default(autoincrement()) @db.UnsignedInt
+  ajudaMenuCodigo                                    Int       @db.UnsignedInt
+  ajudaTitulo                                        String?   @db.VarChar(60)
+  ajudaDescricao                                     String?   @db.Text
+  ajudaInsercaoDataHora                              DateTime? @db.DateTime(0)
+  ajudaInsercaoUsuarioCodigo                         Int?      @db.UnsignedInt
+  ajudaAlteracaoDataHora                             DateTime? @db.DateTime(0)
+  ajudaAlteracaoUsuarioCodigo                        Int?      @db.UnsignedInt
+  menu                                               menu      @relation(fields: [ajudaMenuCodigo], references: [menuCodigo], onDelete: Cascade, map: "ajuda_ibfk_1")
+  usuario_ajuda_ajudaInsercaoUsuarioCodigoTousuario  usuario?  @relation("ajuda_ajudaInsercaoUsuarioCodigoTousuario", fields: [ajudaInsercaoUsuarioCodigo], references: [usuarioCodigo], map: "ajuda_ibfk_6")
+  usuario_ajuda_ajudaAlteracaoUsuarioCodigoTousuario usuario?  @relation("ajuda_ajudaAlteracaoUsuarioCodigoTousuario", fields: [ajudaAlteracaoUsuarioCodigo], references: [usuarioCodigo], map: "ajuda_ibfk_7")
+
+  @@index([ajudaMenuCodigo], map: "menu")
+  @@index([ajudaAlteracaoUsuarioCodigo], map: "usuarioAlteracao")
+  @@index([ajudaInsercaoUsuarioCodigo], map: "usuarioInsercao")
+}

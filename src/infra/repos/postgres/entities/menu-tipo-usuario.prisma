@@ -1,0 +1,8 @@
+model menuTipoUsuario {
+  menuTipoUsuarioMenuCodigo        Int @db.UnsignedInt
+  menuTipoUsuarioTipoUsuarioCodigo Int @db.UnsignedInt
+
+  @@id([menuTipoUsuarioMenuCodigo, menuTipoUsuarioTipoUsuarioCodigo])
+  @@index([menuTipoUsuarioMenuCodigo], map: "menu")
+  @@index([menuTipoUsuarioTipoUsuarioCodigo], map: "tipoUsuario")
+}

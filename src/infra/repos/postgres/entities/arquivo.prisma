@@ -1,0 +1,17 @@
+model arquivo {
+  arquivoCodigo                                          Int       @id @default(autoincrement())
+  arquivoMenuCodigo                                      Int       @db.UnsignedInt
+  arquivoNome                                            String    @db.VarChar(50)
+  arquivoFuncao                                          String    @db.VarChar(70)
+  arquivoInsercaoDataHora                                DateTime? @db.DateTime(0)
+  arquivoInsercaoUsuarioCodigo                           Int?      @db.UnsignedInt
+  arquivoAlteracaoDataHora                               DateTime? @db.DateTime(0)
+  arquivoAlteracaoUsuarioCodigo                          Int?      @db.UnsignedInt
+  menu                                                   menu      @relation(fields: [arquivoMenuCodigo], references: [menuCodigo], onDelete: Cascade, map: "arquivo_ibfk_1")
+  usuario_arquivo_arquivoInsercaoUsuarioCodigoTousuario  usuario?  @relation("arquivo_arquivoInsercaoUsuarioCodigoTousuario", fields: [arquivoInsercaoUsuarioCodigo], references: [usuarioCodigo], map: "arquivo_ibfk_6")
+  usuario_arquivo_arquivoAlteracaoUsuarioCodigoTousuario usuario?  @relation("arquivo_arquivoAlteracaoUsuarioCodigoTousuario", fields: [arquivoAlteracaoUsuarioCodigo], references: [usuarioCodigo], map: "arquivo_ibfk_7")
+
+  @@index([arquivoMenuCodigo], map: "menu")
+  @@index([arquivoAlteracaoUsuarioCodigo], map: "usuarioAlteracao")
+  @@index([arquivoInsercaoUsuarioCodigo], map: "usuarioInsercao")
+}

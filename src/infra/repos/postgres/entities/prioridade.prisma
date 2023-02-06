@@ -1,0 +1,16 @@
+model prioridade {
+  prioridadeCodigo                                             Int            @id @default(autoincrement()) @db.UnsignedInt
+  prioridadeNome                                               String         @db.VarChar(40)
+  prioridadeCor                                                String?        @db.VarChar(6)
+  prioridadeOrdem                                              Int            @db.UnsignedInt
+  prioridadeInsercaoDataHora                                   DateTime       @db.DateTime(0)
+  prioridadeInsercaoUsuarioCodigo                              Int            @db.UnsignedInt
+  prioridadeAlteracaoDataHora                                  DateTime       @db.DateTime(0)
+  prioridadeAlteracaoUsuarioCodigo                             Int            @db.UnsignedInt
+  ordemServico                                                 ordemServico[]
+  usuario_prioridade_prioridadeInsercaoUsuarioCodigoTousuario  usuario        @relation("prioridade_prioridadeInsercaoUsuarioCodigoTousuario", fields: [prioridadeInsercaoUsuarioCodigo], references: [usuarioCodigo], onDelete: NoAction, map: "prioridade_ibfk_1")
+  usuario_prioridade_prioridadeAlteracaoUsuarioCodigoTousuario usuario        @relation("prioridade_prioridadeAlteracaoUsuarioCodigoTousuario", fields: [prioridadeAlteracaoUsuarioCodigo], references: [usuarioCodigo], onDelete: NoAction, map: "prioridade_ibfk_2")
+
+  @@index([prioridadeAlteracaoUsuarioCodigo], map: "usuarioAlteracao")
+  @@index([prioridadeInsercaoUsuarioCodigo], map: "usuarioInsercao")
+}

@@ -1,0 +1,11 @@
+model usuarioOnLine {
+  usuarioOnLineCodigo          Int  @id @default(autoincrement()) @db.UnsignedInt
+  usuarioOnLineUsuarioCodigo   Int  @db.UnsignedInt
+  usuarioOnLineMenuCodigo      Int? @db.UnsignedInt
+  usuarioOnLineTimeStamp       Int? @db.UnsignedInt
+  usuarioOnLineContaCodigo     Int  @db.UnsignedInt
+  usuarioOnLineLogAcessoCodigo Int  @db.UnsignedInt
+
+  @@index([usuarioOnLineMenuCodigo], map: "menu")
+  @@index([usuarioOnLineUsuarioCodigo], map: "usuario")
+}

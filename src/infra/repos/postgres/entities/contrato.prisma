@@ -1,0 +1,22 @@
+model contrato {
+  contratoCodigo                   Int                                       @id @default(autoincrement())
+  contratoEmpresaCodigo            Int
+  contratoContaCodigo              Int
+  contratoResponsavelUsuarioCodigo Int?
+  contratoTitulo                   String                                    @db.VarChar(45)
+  contratoObservacao               String?                                   @db.VarChar(250)
+  contratoInicioData               DateTime?                                 @db.Date
+  contratoFimData                  DateTime?                                 @db.Date
+  contratoRenovacaoAutomaticaFlag  contrato_contratoRenovacaoAutomaticaFlag?
+  contratoQuantidadeHoras          Int?
+  contratoCentroCustoCodigo        Int?
+  contratoProdutoEmpresaCodigo     Int?
+  contratoContratoTipoCodigo       Int?
+  contratoPrecoHora                Decimal?                                  @db.Decimal(12, 2)
+  contratoDiaVencimento            Int?
+  contratoAtivoFlag                contrato_contratoAtivoFlag
+  contratoInsercaoDataHora         DateTime                                  @db.DateTime(0)
+  contratoAlteracaoDataHora        DateTime                                  @db.DateTime(0)
+  contratoInsercaoUsuarioCodigo    Int
+  contratoAlteracaoUsuarioCodigo   Int
+}

@@ -1,0 +1,9 @@
+model indicadorGrupoUsuario {
+  indicadorGrupoUsuarioIndicadorGrupoCodigo  Int       @db.UnsignedInt
+  indicadorGrupoUsuarioUsuarioCodigo         Int?      @db.UnsignedInt
+  indicadorGrupoUsuarioInsercaoUsuarioCodigo Int?
+  indicadorGrupoUsuarioInsercaoDataHora      DateTime? @db.DateTime(0)
+
+  @@index([indicadorGrupoUsuarioIndicadorGrupoCodigo], map: "indicadorGrupoCodigo")
+  @@ignore
+}

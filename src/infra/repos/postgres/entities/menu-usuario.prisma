@@ -1,0 +1,12 @@
+model menuUsuario {
+  menuUsuarioMenuCodigo    Int                  @db.UnsignedInt
+  menuUsuarioUsuarioCodigo Int                  @db.UnsignedInt
+  menuUsuarioAcessos       Int?                 @db.UnsignedInt
+  menu                     menu                 @relation(fields: [menuUsuarioMenuCodigo], references: [menuCodigo], onDelete: Cascade, map: "menuUsuario_ibfk_3")
+  usuario                  usuario              @relation(fields: [menuUsuarioUsuarioCodigo], references: [usuarioCodigo], onDelete: Cascade, map: "menuUsuario_ibfk_4")
+  menuUsuarioDireito       menuUsuarioDireito[]
+
+  @@id([menuUsuarioMenuCodigo, menuUsuarioUsuarioCodigo])
+  @@index([menuUsuarioMenuCodigo], map: "menu")
+  @@index([menuUsuarioUsuarioCodigo], map: "usuario")
+}

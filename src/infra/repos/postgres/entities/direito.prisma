@@ -1,0 +1,15 @@
+model direito {
+  direitoCodigo                                          Int                  @id @default(autoincrement()) @db.UnsignedInt
+  direitoNome                                            String?              @db.VarChar(40)
+  direitoInsercaoDataHora                                DateTime?            @db.DateTime(0)
+  direitoInsercaoUsuarioCodigo                           Int?                 @db.UnsignedInt
+  direitoAlteracaoDataHora                               DateTime?            @db.DateTime(0)
+  direitoAlteracaoUsuarioCodigo                          Int?                 @db.UnsignedInt
+  usuario_direito_direitoInsercaoUsuarioCodigoTousuario  usuario?             @relation("direito_direitoInsercaoUsuarioCodigoTousuario", fields: [direitoInsercaoUsuarioCodigo], references: [usuarioCodigo], map: "direito_ibfk_1")
+  usuario_direito_direitoAlteracaoUsuarioCodigoTousuario usuario?             @relation("direito_direitoAlteracaoUsuarioCodigoTousuario", fields: [direitoAlteracaoUsuarioCodigo], references: [usuarioCodigo], map: "direito_ibfk_2")
+  menuPerfilDireito                                      menuPerfilDireito[]
+  menuUsuarioDireito                                     menuUsuarioDireito[]
+
+  @@index([direitoAlteracaoUsuarioCodigo], map: "usuarioAlteracao")
+  @@index([direitoInsercaoUsuarioCodigo], map: "usuarioInsercao")
+}

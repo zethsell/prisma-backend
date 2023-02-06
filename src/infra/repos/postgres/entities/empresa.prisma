@@ -1,0 +1,42 @@
+model empresa {
+  empresaCodigo                                          Int                      @id @default(autoincrement()) @db.UnsignedInt
+  empresaGerenteUsuarioCodigo                            Int                      @db.UnsignedInt
+  empresaMunicipioCodigo                                 String?                  @db.Char(6)
+  empresaNomeFantasia                                    String                   @db.VarChar(60)
+  empresaRazaoSocial                                     String                   @db.VarChar(60)
+  empresaCnpj                                            String?                  @db.VarChar(18)
+  empresaInscricaoEstadual                               String?                  @db.VarChar(25)
+  empresaEndereco                                        String?                  @db.VarChar(120)
+  empresaEnderecoNumero                                  Int?                     @db.UnsignedInt
+  empresaBairro                                          String?                  @db.VarChar(40)
+  empresaCep                                             String?                  @db.VarChar(9)
+  empresaDiaVencimento                                   Int?                     @db.UnsignedInt
+  empresaValorHora                                       Decimal?                 @db.Decimal(10, 2)
+  empresaValorContrato                                   Decimal?                 @db.Decimal(10, 2)
+  empresaHorasContrato                                   Int?                     @db.UnsignedInt
+  empresaValidadeContrato                                DateTime?                @db.Date
+  empresaInsercaoDataHora                                DateTime                 @db.DateTime(0)
+  empresaInsercaoUsuarioCodigo                           Int                      @db.UnsignedInt
+  empresaAlteracaoDataHora                               DateTime                 @db.DateTime(0)
+  empresaAlteracaoUsuarioCodigo                          Int                      @db.UnsignedInt
+  empresaAtivoFlag                                       empresa_empresaAtivoFlag @default(S)
+  empresaContaCodigo                                     Int
+  usuario_empresa_empresaGerenteUsuarioCodigoTousuario   usuario                  @relation("empresa_empresaGerenteUsuarioCodigoTousuario", fields: [empresaGerenteUsuarioCodigo], references: [usuarioCodigo], map: "empresa_ibfk_13")
+  usuario_empresa_empresaInsercaoUsuarioCodigoTousuario  usuario                  @relation("empresa_empresaInsercaoUsuarioCodigoTousuario", fields: [empresaInsercaoUsuarioCodigo], references: [usuarioCodigo], onDelete: NoAction, map: "empresa_ibfk_15")
+  usuario_empresa_empresaAlteracaoUsuarioCodigoTousuario usuario                  @relation("empresa_empresaAlteracaoUsuarioCodigoTousuario", fields: [empresaAlteracaoUsuarioCodigo], references: [usuarioCodigo], onDelete: NoAction, map: "empresa_ibfk_16")
+  movimentoExterno                                       movimentoExterno[]
+  sistema                                                sistema[]
+
+  @@index([empresaAtivoFlag], map: "empresaAtivoFlag")
+  @@index([empresaContaCodigo], map: "empresaContaCodigo")
+  @@index([empresaNomeFantasia], map: "empresaNomeFantasia")
+  @@index([empresaGerenteUsuarioCodigo], map: "gerente")
+  @@index([empresaMunicipioCodigo], map: "municipio")
+  @@index([empresaAlteracaoUsuarioCodigo], map: "usuarioAlteracao")
+  @@index([empresaInsercaoUsuarioCodigo], map: "usuarioInsercao")
+}
+
+enum empresa_empresaAtivoFlag {
+  S
+  N
+}

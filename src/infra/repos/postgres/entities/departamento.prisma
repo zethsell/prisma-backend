@@ -1,0 +1,16 @@
+model departamento {
+  departamentoCodigo                                               Int                 @id @default(autoincrement()) @db.UnsignedInt
+  departamentoNome                                                 String?             @db.VarChar(50)
+  departamentoInsercaoDataHora                                     DateTime?           @db.DateTime(0)
+  departamentoInsercaoUsuarioCodigo                                Int?                @db.UnsignedInt
+  departamentoAlteracaoDataHora                                    DateTime?           @db.DateTime(0)
+  departamentoAlteracaoUsuarioCodigo                               Int?                @db.UnsignedInt
+  departamentoContaCodigo                                          Int
+  cargoDepartamento                                                cargoDepartamento[]
+  usuario_departamento_departamentoInsercaoUsuarioCodigoTousuario  usuario?            @relation("departamento_departamentoInsercaoUsuarioCodigoTousuario", fields: [departamentoInsercaoUsuarioCodigo], references: [usuarioCodigo], map: "departamento_ibfk_3")
+  usuario_departamento_departamentoAlteracaoUsuarioCodigoTousuario usuario?            @relation("departamento_departamentoAlteracaoUsuarioCodigoTousuario", fields: [departamentoAlteracaoUsuarioCodigo], references: [usuarioCodigo], map: "departamento_ibfk_4")
+  usuario_usuario_usuarioDepartamentoCodigoTodepartamento          usuario[]           @relation("usuario_usuarioDepartamentoCodigoTodepartamento")
+
+  @@index([departamentoAlteracaoUsuarioCodigo], map: "usuarioAltercao")
+  @@index([departamentoInsercaoUsuarioCodigo], map: "usuarioInsercao")
+}

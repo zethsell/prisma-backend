@@ -1,0 +1,7 @@
+model logAcessoMenu {
+  logAcessoMenuCodigo          Int  @id @default(autoincrement())
+  logAcessoMenuMenuCodigo      Int?
+  logAcessoMenuLogAcessoCodigo Int?
+
+  @@index([logAcessoMenuLogAcessoCodigo], map: "logAcesso")
+}

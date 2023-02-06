@@ -1,0 +1,8 @@
+model departamentoPerfil {
+  departamentoPerfilDepartamentoCodigo Int @db.UnsignedInt
+  departamentoPerfilPerfilCodigo       Int @db.UnsignedInt
+
+  @@id([departamentoPerfilDepartamentoCodigo, departamentoPerfilPerfilCodigo])
+  @@index([departamentoPerfilDepartamentoCodigo], map: "departamento")
+  @@index([departamentoPerfilPerfilCodigo], map: "perfil")
+}

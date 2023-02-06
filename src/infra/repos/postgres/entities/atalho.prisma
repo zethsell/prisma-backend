@@ -1,0 +1,11 @@
+model atalho {
+  atalhoCodigo        Int     @id @default(autoincrement()) @db.UnsignedInt
+  atalhoUsuarioCodigo Int     @db.UnsignedInt
+  atalhoMenuCodigo    Int     @db.UnsignedInt
+  atalhoTecla         String  @db.Char(1)
+  usuario             usuario @relation(fields: [atalhoUsuarioCodigo], references: [usuarioCodigo], onDelete: Cascade, map: "atalho_ibfk_1")
+  menu                menu    @relation(fields: [atalhoMenuCodigo], references: [menuCodigo], onDelete: Cascade, map: "atalho_ibfk_2")
+
+  @@index([atalhoMenuCodigo], map: "menu")
+  @@index([atalhoUsuarioCodigo], map: "usuario")
+}

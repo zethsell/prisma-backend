@@ -1,0 +1,27 @@
+model configuracaoModulo {
+  configuracaoModuloCodigo                                                     Int                                                      @id @default(autoincrement())
+  configuracaoModuloParametro                                                  String                                                   @db.VarChar(50)
+  configuracaoModuloValor                                                      String                                                   @db.VarChar(100)
+  configuracaoModuloDescricao                                                  String                                                   @db.Text
+  configuracaoModuloClienteEditavelFlag                                        configuracaoModulo_configuracaoModuloClienteEditavelFlag @default(N)
+  configuracaoModuloCarregaEmSessaoFlag                                        configuracaoModulo_configuracaoModuloCarregaEmSessaoFlag @default(N)
+  configuracaoModuloInsercaoDataHora                                           DateTime?                                                @db.DateTime(0)
+  configuracaoModuloInsercaoUsuarioCodigo                                      Int?                                                     @db.UnsignedInt
+  configuracaoModuloAlteracaoDataHora                                          DateTime?                                                @db.DateTime(0)
+  configuracaoModuloAlteracaoUsuarioCodigo                                     Int?                                                     @db.UnsignedInt
+  usuario_configuracaoModulo_configuracaoModuloInsercaoUsuarioCodigoTousuario  usuario?                                                 @relation("configuracaoModulo_configuracaoModuloInsercaoUsuarioCodigoTousuario", fields: [configuracaoModuloInsercaoUsuarioCodigo], references: [usuarioCodigo], map: "configuracaoModulo_ibfk_3")
+  usuario_configuracaoModulo_configuracaoModuloAlteracaoUsuarioCodigoTousuario usuario?                                                 @relation("configuracaoModulo_configuracaoModuloAlteracaoUsuarioCodigoTousuario", fields: [configuracaoModuloAlteracaoUsuarioCodigo], references: [usuarioCodigo], map: "configuracaoModulo_ibfk_4")
+
+  @@index([configuracaoModuloAlteracaoUsuarioCodigo], map: "usuarioAlteracao")
+  @@index([configuracaoModuloInsercaoUsuarioCodigo], map: "usuarioInsercao")
+}
+
+enum configuracaoModulo_configuracaoModuloClienteEditavelFlag {
+  S
+  N
+}
+
+enum configuracaoModulo_configuracaoModuloCarregaEmSessaoFlag {
+  S
+  N
+}

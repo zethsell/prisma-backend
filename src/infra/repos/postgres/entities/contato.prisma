@@ -1,0 +1,18 @@
+model contato {
+  contatoCodigo                    Int                                       @id @default(autoincrement())
+  contatoEmpresaCodigo             Int
+  contatoNome                      String?                                   @db.VarChar(60)
+  contatoEmail                     String?                                   @db.VarChar(100)
+  contatoTelefone                  String?                                   @db.VarChar(16)
+  contatoSenha                     String?                                   @db.VarChar(32)
+  contatoObservacao                String?                                   @db.VarChar(255)
+  contatoAtivoFlag                 contato_contatoAtivoFlag?
+  contatoErpNumero                 String?                                   @db.VarChar(20)
+  contatoContaCodigo               Int
+  contatoGestorFlag                contato_contatoGestorFlag?                @default(N)
+  contatoVisualizaSomenteSuaOSFlag contato_contatoVisualizaSomenteSuaOSFlag? @default(N)
+}
+enum contato_contatoGestorFlag {
+  S
+  N
+}

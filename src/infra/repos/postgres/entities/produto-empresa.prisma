@@ -1,0 +1,18 @@
+model produtoEmpresa {
+  produtoEmpresaCodigo                 Int      @id @default(autoincrement()) @db.UnsignedInt
+  produtoEmpresaEmpresaCodigo          Int      @db.UnsignedInt
+  produtoEmpresaNome                   String   @db.VarChar(60)
+  produtoEmpresaDescricao              String   @db.Text
+  produtoEmpresaInsercaoDataHora       DateTime @db.DateTime(0)
+  produtoEmpresaInsercaoUsuarioCodigo  Int      @db.UnsignedInt
+  produtoEmpresaAlteracaoDataHora      DateTime @db.DateTime(0)
+  produtoEmpresaAlteracaoUsuarioCodigo Int      @db.UnsignedInt
+  produtoEmpresaContaCodigo            Int?
+  produtoEmpresaHorasContrato          Int?
+  produtoEmpresaPrevisaoFechamento     Int?
+
+  @@index([produtoEmpresaEmpresaCodigo], map: "empresa")
+  @@index([produtoEmpresaContaCodigo], map: "produtoEmpresaContaCodigo")
+  @@index([produtoEmpresaAlteracaoUsuarioCodigo], map: "usuarioAlteracao")
+  @@index([produtoEmpresaInsercaoUsuarioCodigo], map: "usuarioInsercao")
+}

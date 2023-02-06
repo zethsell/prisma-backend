@@ -1,0 +1,15 @@
+model perfil {
+  perfilCodigo                                         Int       @id @default(autoincrement()) @db.UnsignedInt
+  perfilNome                                           String?   @db.VarChar(50)
+  perfilDescricao                                      String?   @db.Text
+  perfilInsercaoDataHora                               DateTime? @db.DateTime(0)
+  perfilInsercaoUsuarioCodigo                          Int?      @db.UnsignedInt
+  perfilAlteracaoDataHora                              DateTime? @db.DateTime(0)
+  perfilAlteracaoUsuarioCodigo                         Int?      @db.UnsignedInt
+  perfilContaCodigo                                    Int       @db.UnsignedInt
+  usuario_perfil_perfilInsercaoUsuarioCodigoTousuario  usuario?  @relation("perfil_perfilInsercaoUsuarioCodigoTousuario", fields: [perfilInsercaoUsuarioCodigo], references: [usuarioCodigo], onDelete: NoAction, map: "perfil_ibfk_1")
+  usuario_perfil_perfilAlteracaoUsuarioCodigoTousuario usuario?  @relation("perfil_perfilAlteracaoUsuarioCodigoTousuario", fields: [perfilAlteracaoUsuarioCodigo], references: [usuarioCodigo], onDelete: NoAction, map: "perfil_ibfk_2")
+
+  @@index([perfilAlteracaoUsuarioCodigo], map: "usuarioAlteracao")
+  @@index([perfilInsercaoUsuarioCodigo], map: "usuarioInsercao")
+}

@@ -1,0 +1,72 @@
+model ordemServico {
+  ordemServicoCodigo                      Int                                        @id @default(autoincrement()) @db.UnsignedInt
+  ordemServicoProjetoCodigo               Int?                                       @db.UnsignedInt
+  ordemServicoResponsavelUsuarioCodigo    Int?                                       @db.UnsignedInt
+  ordemServicoAprovacaoUsuarioCodigo      Int?                                       @db.UnsignedInt
+  ordemServicoEmpresaCodigo               Int                                        @db.UnsignedInt
+  ordemServicoOrdemServicoEstadoCodigo    Int                                        @db.UnsignedInt
+  ordemServicoOrdemServicoCategoriaCodigo Int?                                       @db.UnsignedInt
+  ordemServicoPrioridadeCodigo            Int                                        @db.UnsignedInt
+  ordemServicoProdutoEmpresaCodigo        Int?                                       @db.UnsignedInt
+  ordemServicoOrcamentoUsuarioCodigo      Int?                                       @db.UnsignedInt
+  ordemServicoInsercaoUsuarioCodigo       Int?                                       @db.UnsignedInt
+  ordemServicoTitulo                      String                                     @db.VarChar(60)
+  ordemServicoDescricao                   String                                     @db.Text
+  ordemServicoHorasPrevistas              Decimal?                                   @db.Decimal(7, 2)
+  ordemServicoHorasRealizadas             Decimal?                                   @default(0.00) @db.Decimal(7, 2)
+  ordemServicoPrazo                       Int?                                       @db.UnsignedInt
+  ordemServicoAvaliacaoDataHora           DateTime?                                  @db.DateTime(0)
+  ordemServicoParecerTecnico              String?                                    @db.Text
+  ordemServicoOrcamentoDataHora           DateTime?                                  @db.DateTime(0)
+  ordemServicoMotivoReprovacao            String?                                    @db.Text
+  ordemServicoOrcamentoValor              Decimal?                                   @db.Decimal(9, 2)
+  ordemServicoInsercaoDataHora            DateTime?                                  @db.DateTime(0)
+  ordemServicoAprovacaoDataHora           DateTime?                                  @db.DateTime(0)
+  ordemServicoFormaCobrancaFlag           ordemServico_ordemServicoFormaCobrancaFlag @default(A)
+  ordemServicoFaturamentoMes              DateTime?                                  @db.Date
+  ordemServicoExcluidaFlag                ordemServico_ordemServicoExcluidaFlag      @default(N)
+  ordemServicoConclusaoData               DateTime?                                  @db.Date
+  ordemServicoAtrasoDescricao             String?                                    @db.Text
+  ordemServicoPercentualDesenvolvido      Int?
+  ordemServicoCentroCustoCodigo           Int?                                       @db.UnsignedInt
+  ordemServicoAvaliacao                   Int?
+  ordemServicoAvaliacaoObservacao         String?                                    @db.VarChar(200)
+  ordemServicoContaCodigo                 Int
+  ordemServicoExecucaoDeData              DateTime?                                  @db.Date
+  ordemServicoExecucaoAteData             DateTime?                                  @db.Date
+  ordemServicoContratoCodigo              Int?
+  ordemServicoContatoCodigo               Int?
+  ordemServicoPrioridadeNumero            Int?
+  interacao                               interacao[]
+  usuario                                 usuario?                                   @relation(fields: [ordemServicoOrcamentoUsuarioCodigo], references: [usuarioCodigo], onDelete: NoAction, map: "ordemServico_ibfk_12")
+  ordemServicoEstado                      ordemServicoEstado                         @relation(fields: [ordemServicoOrdemServicoEstadoCodigo], references: [ordemServicoEstadoCodigo], onDelete: NoAction, map: "ordemServico_ibfk_7")
+  prioridade                              prioridade                                 @relation(fields: [ordemServicoPrioridadeCodigo], references: [prioridadeCodigo], onDelete: NoAction, map: "ordemServico_ibfk_9")
+  ordemServicoAnexo                       ordemServicoAnexo[]
+  ordemServicoHistorico                   ordemServicoHistorico[]
+
+  @@index([ordemServicoAprovacaoUsuarioCodigo], map: "aprovadaPor")
+  @@index([ordemServicoEmpresaCodigo], map: "empresa")
+  @@index([ordemServicoProdutoEmpresaCodigo], map: "modulo")
+  @@index([ordemServicoOrcamentoUsuarioCodigo], map: "orcamentoPor")
+  @@index([ordemServicoOrdemServicoCategoriaCodigo], map: "ordemServicoCategoria")
+  @@index([ordemServicoContaCodigo], map: "ordemServicoContaCodigo")
+  @@index([ordemServicoContatoCodigo], map: "ordemServicoContatoCodigo")
+  @@index([ordemServicoOrdemServicoEstadoCodigo], map: "ordemServicoEstado")
+  @@index([ordemServicoExcluidaFlag], map: "ordemServicoExcluidaFlag")
+  @@index([ordemServicoPrioridadeCodigo], map: "ordemServicoPrioridadeCodigo")
+  @@index([ordemServicoResponsavelUsuarioCodigo], map: "ordemServicoResponsavelUsuarioCodigo")
+  @@index([ordemServicoInsercaoUsuarioCodigo], map: "ordemServicoUsuarioInsercao")
+  @@index([ordemServicoPrioridadeCodigo], map: "prioridade")
+  @@index([ordemServicoProjetoCodigo], map: "projeto")
+  @@index([ordemServicoResponsavelUsuarioCodigo], map: "tecnico")
+}
+
+enum ordemServico_ordemServicoExcluidaFlag {
+  S
+  N
+}
+
+enum ordemServico_ordemServicoFormaCobrancaFlag {
+  A
+  O
+}

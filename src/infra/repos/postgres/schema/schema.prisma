@@ -1,0 +1,151 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model tipoUsuarioUsuarioDireito {
+  tipoUsuarioUsuarioDireitoTipoUsuarioUsuarioTipoUsuarioCodigo Int @db.UnsignedInt
+  tipoUsuarioUsuarioDireitoTipoUsuarioUsuarioUsuarioCodigo     Int @db.UnsignedInt
+  tipoUsuarioUsuarioDireitoDireitoCodigo                       Int @db.UnsignedInt
+
+  @@id([tipoUsuarioUsuarioDireitoTipoUsuarioUsuarioTipoUsuarioCodigo, tipoUsuarioUsuarioDireitoTipoUsuarioUsuarioUsuarioCodigo, tipoUsuarioUsuarioDireitoDireitoCodigo])
+  @@index([tipoUsuarioUsuarioDireitoDireitoCodigo], map: "direito")
+  @@index([tipoUsuarioUsuarioDireitoTipoUsuarioUsuarioTipoUsuarioCodigo, tipoUsuarioUsuarioDireitoTipoUsuarioUsuarioUsuarioCodigo], map: "tipoUsuarioUsuario")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+
+enum financeiroTitulo_financeiroTituloCreditoDebitoFlag {
+  C
+  D
+}
+
+
+
+enum indicador_indicadorPeriodoFlag {
+  D
+  M
+  A
+}
+
+enum projeto_projetoExcluidoFlag {
+  S
+  N
+}
+
+enum centroCusto_centroCustoAtivoFlag {
+  S
+  N
+}
+
+enum contato_contatoAtivoFlag {
+  S
+  N
+}
+
+enum financeiroTitulo_financeiroTituloPagoFlag {
+  N
+  S
+}
+
+enum interacao_interacaoCobrarFlag {
+  S
+  N
+}
+
+enum contrato_contratoRenovacaoAutomaticaFlag {
+  N
+  S
+}
+
+enum interacao_interacaoCobrarVerificadoFlag {
+  S
+  N
+}
+
+enum ordemServicoCategoria_ordemServicoCategoriaMostraSiteFlag {
+  S
+  N
+}
+
+enum menu_menuExibeFlag {
+  S
+  N
+}
+
+enum ordemServicoCategoria_ordemServicoCategoriaEnviaEmailClienteFlag {
+  S
+  N
+}
+
+
+
+enum menu_menuFixoFlag {
+  S
+  N
+}
+
+enum projeto_projetoCobrarFlag {
+  S
+  N
+}
+
+enum contato_contatoVisualizaSomenteSuaOSFlag {
+  S
+  N
+}
+
+enum menu_menuExibeIconeFlag {
+  S
+  N
+}
+
+enum menu_menuDireitoFlag {
+  S
+  N
+}
+
+enum relatorio_relatorioTamanhoFlag {
+  P
+  G
+}
+
+enum conta_contaBloqueadaFlag {
+  S
+  N
+}
+
+enum menu_menuPublicoFlag {
+  S
+  N
+}
+
+enum relatorio_relatorioMostrarMediaFlag {
+  N
+  S
+}
+
+enum contrato_contratoAtivoFlag {
+  S
+  N
+}
+
+enum usuario_usuarioAtivoFlag {
+  S
+  N
+}
+
+enum menu_menuPaginaInicialFlag {
+  N
+  S
+}
+
+enum usuario_usuarioClienteProprioFlag {
+  S
+  N
+}
+

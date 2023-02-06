@@ -1,0 +1,5 @@
+model idioma {
+  idiomaCodigo Int    @id @default(autoincrement())
+  idiomaNome   String @db.VarChar(30)
+  idiomaSigla  String @db.VarChar(10)
+}

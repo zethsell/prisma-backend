@@ -1,0 +1,19 @@
+model tipoUsuario {
+  tipoUsuarioCodigo                                              Int       @id @default(autoincrement()) @db.UnsignedInt
+  tipoUsuarioNome                                                String?   @db.VarChar(50)
+  tipoUsuarioDescricao                                           String?   @db.VarChar(150)
+  tipoUsuarioInsercaoDataHora                                    DateTime? @db.DateTime(0)
+  tipoUsuarioInsercaoUsuarioCodigo                               Int?      @db.UnsignedInt
+  tipoUsuarioAlteracaoDataHora                                   DateTime? @db.DateTime(0)
+  tipoUsuarioAlteracaoUsuarioCodigo                              Int?      @db.UnsignedInt
+  tipoUsuarioContaCodigo                                         Int       @db.UnsignedInt
+  tipoUsuarioVariavelNome                                        String?   @db.VarChar(45)
+  usuario_tipoUsuario_tipoUsuarioAlteracaoUsuarioCodigoTousuario usuario?  @relation("tipoUsuario_tipoUsuarioAlteracaoUsuarioCodigoTousuario", fields: [tipoUsuarioAlteracaoUsuarioCodigo], references: [usuarioCodigo], onDelete: NoAction, map: "tipoUsuario_ibfk_1")
+  usuario_tipoUsuario_tipoUsuarioInsercaoUsuarioCodigoTousuario  usuario?  @relation("tipoUsuario_tipoUsuarioInsercaoUsuarioCodigoTousuario", fields: [tipoUsuarioInsercaoUsuarioCodigo], references: [usuarioCodigo], onDelete: NoAction, map: "tipoUsuario_ibfk_2")
+
+  @@index([tipoUsuarioContaCodigo], map: "tipoUsuarioContaCodigo")
+  @@index([tipoUsuarioNome], map: "tipoUsuarioNome")
+  @@index([tipoUsuarioVariavelNome], map: "tipoUsuarioVariavelNome")
+  @@index([tipoUsuarioAlteracaoUsuarioCodigo], map: "usuarioAlteracao")
+  @@index([tipoUsuarioInsercaoUsuarioCodigo], map: "usuarioInsercao")
+}

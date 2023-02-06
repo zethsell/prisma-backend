@@ -1,0 +1,11 @@
+{
+  "mixers": [
+    {
+      "input": [
+        "./src/main/config/prisma/base.prisma",
+        "./src/infra/repos/postgres/entities/*.prisma"
+      ],
+      "output": "./src/infra/repos/postgres/schema/schema.prisma"
+    }
+  ]
+}

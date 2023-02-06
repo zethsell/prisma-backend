@@ -1,0 +1,8 @@
+model departamentoFilial {
+  departamentoFilialDepartamentoCodigo Int @db.UnsignedInt
+  departamentoFilialFilialCodigo       Int
+
+  @@id([departamentoFilialDepartamentoCodigo, departamentoFilialFilialCodigo])
+  @@index([departamentoFilialDepartamentoCodigo], map: "departamento")
+  @@index([departamentoFilialFilialCodigo], map: "filial")
+}

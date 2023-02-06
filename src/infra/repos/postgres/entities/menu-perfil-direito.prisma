@@ -1,0 +1,11 @@
+model menuPerfilDireito {
+  menuPerfilDireitoDireitoCodigo          Int        @db.UnsignedInt
+  menuPerfilDireitoMenuPerfilPerfilCodigo Int        @db.UnsignedInt
+  menuPerfilDireitoMenuPerfilMenuCodigo   Int        @db.UnsignedInt
+  menuPerfil                              menuPerfil @relation(fields: [menuPerfilDireitoMenuPerfilMenuCodigo, menuPerfilDireitoMenuPerfilPerfilCodigo], references: [menuPerfilMenuCodigo, menuPerfilPerfilCodigo], onDelete: Cascade, map: "menuPerfilDireito_ibfk_1")
+  direito                                 direito    @relation(fields: [menuPerfilDireitoDireitoCodigo], references: [direitoCodigo], onDelete: Cascade, map: "menuPerfilDireito_ibfk_2")
+
+  @@id([menuPerfilDireitoDireitoCodigo, menuPerfilDireitoMenuPerfilPerfilCodigo, menuPerfilDireitoMenuPerfilMenuCodigo])
+  @@index([menuPerfilDireitoDireitoCodigo], map: "direito")
+  @@index([menuPerfilDireitoMenuPerfilMenuCodigo, menuPerfilDireitoMenuPerfilPerfilCodigo], map: "menuPerfil")
+}

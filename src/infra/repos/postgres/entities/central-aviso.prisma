@@ -1,0 +1,11 @@
+model centralAviso {
+  centralAvisoCodigo        Int      @id @default(autoincrement())
+  centralAvisoTitulo        String   @db.VarChar(80)
+  centralAvisoDescricao     String   @db.VarChar(250)
+  centralAvisoDataHora      DateTime @db.DateTime(0)
+  centralAvisoUsuarioCodigo Int      @db.UnsignedInt
+  centralAvisoMenuCodigo    Int      @db.UnsignedInt
+  centralAvisoContaCodigo   Int      @db.UnsignedInt
+
+  @@index([centralAvisoContaCodigo], map: "centralAvisoContaCodigo")
+}

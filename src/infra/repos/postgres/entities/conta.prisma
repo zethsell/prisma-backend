@@ -1,0 +1,52 @@
+model conta {
+  contaCodigo                        Int                                      @id @default(autoincrement()) @db.UnsignedInt
+  contaUsuarioCodigo                 Int                                      @db.UnsignedInt
+  contaNome                          String                                   @db.VarChar(50)
+  contaEmail                         String?                                  @db.VarChar(50)
+  contaPais                          String?                                  @db.VarChar(50)
+  contaPaisNumero                    String?                                  @db.VarChar(3)
+  contaUf                            String?                                  @db.VarChar(50)
+  contaUfNumero                      String?                                  @db.VarChar(3)
+  contaMunicipio                     String?                                  @db.VarChar(100)
+  contaMunicipioNumero               Int?                                     @db.UnsignedInt
+  contaInsercaoDataHora              DateTime                                 @db.DateTime(0)
+  contaAlteracaoDataHora             DateTime?                                @db.DateTime(0)
+  contaQuantidadeUsuarios            Int?
+  contaBloqueadaFlag                 conta_contaBloqueadaFlag?                @default(S)
+  contaTrialFlag                     conta_contaTrialFlag?                    @default(S)
+  contaObservacao                    String?                                  @db.VarChar(255)
+  contaTelefone                      String?                                  @db.VarChar(15)
+  contaCelular                       String?                                  @db.VarChar(15)
+  contaAtivaFlag                     conta_contaAtivaFlag?
+  contaEnviaEmailAniversariantesFlag conta_contaEnviaEmailAniversariantesFlag @default(N)
+  contaEmailServidor                 String?                                  @db.VarChar(60)
+  contaEmailPorta                    Int?
+  contaEmailUsuario                  String?                                  @db.VarChar(50)
+  contaEmailSenha                    String?                                  @db.VarChar(50)
+  contaEmailAssinatura               String?                                  @db.Text
+  contaCobrarFlag                    conta_contaCobrarFlag?                   @default(S)
+  contaMensalidadeValor              Decimal?                                 @db.Decimal(16, 2)
+  contaEmailCobranca                 String?                                  @db.VarChar(60)
+  contaDiaVencimento                 Int?
+  contaPlanoCodigo                   Int?
+}
+
+enum conta_contaAtivaFlag {
+  S
+  N
+}
+
+enum conta_contaCobrarFlag {
+  S
+  N
+}
+
+enum conta_contaEnviaEmailAniversariantesFlag {
+  S
+  N
+}
+
+enum conta_contaTrialFlag {
+  S
+  N
+}

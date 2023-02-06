@@ -1,0 +1,10 @@
+model financeiroTituloTipo {
+  financeiroTituloTipoCodigo                 Int                @id @default(autoincrement()) @db.UnsignedInt
+  financeiroTituloTipoNome                   String             @db.VarChar(20)
+  financeiroTituloTipoDescricao              String?            @db.VarChar(200)
+  financeiroTituloTipoInsercaoDataHora       DateTime?          @db.DateTime(0)
+  financeiroTituloTipoInsercaoUsuarioCodigo  Int?               @db.UnsignedInt
+  financeiroTituloTipoAlteracaoDataHora      DateTime?          @db.DateTime(0)
+  financeiroTituloTipoAlteracaoUsuarioCodigo Int?               @db.UnsignedInt
+  financeiroTitulo                           financeiroTitulo[]
+}

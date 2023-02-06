@@ -1,0 +1,16 @@
+model uf2 {
+  ufCodigo                                      Int          @id @default(autoincrement()) @db.UnsignedInt
+  ufNome                                        String?      @db.VarChar(40)
+  ufSigla                                       String?      @db.Char(2)
+  ufInsercaoDataHora                            DateTime?    @db.DateTime(0)
+  ufInsercaoUsuarioCodigo                       Int?         @db.UnsignedInt
+  ufAlteracaoDataHora                           DateTime?    @db.DateTime(0)
+  ufAlteracaoUsuarioCodigo                      Int?         @db.UnsignedInt
+  ufPaisIso                                     String?      @db.VarChar(3)
+  municipio2                                    municipio2[]
+  usuario_uf2_ufInsercaoUsuarioCodigoTousuario  usuario?     @relation("uf2_ufInsercaoUsuarioCodigoTousuario", fields: [ufInsercaoUsuarioCodigo], references: [usuarioCodigo], onDelete: NoAction, map: "uf2_ibfk_1")
+  usuario_uf2_ufAlteracaoUsuarioCodigoTousuario usuario?     @relation("uf2_ufAlteracaoUsuarioCodigoTousuario", fields: [ufAlteracaoUsuarioCodigo], references: [usuarioCodigo], onDelete: NoAction, map: "uf2_ibfk_2")
+
+  @@index([ufAlteracaoUsuarioCodigo], map: "usuarioAlteracao")
+  @@index([ufInsercaoUsuarioCodigo], map: "usuarioInsercao")
+}
